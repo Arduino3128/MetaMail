@@ -35,33 +35,7 @@ dbc = mysql.connector.connect(
   )
 c = dbc.cursor()
 clear()
-'''x=input("Enter your Username")
-#y=int(input("Enter Addr no"))
-z=input("Enter Your password")'''
 
-"""print('''
-                  _                          _  _   ____      ___  
-     /\/\    ___ | |_   __ _   /\/\    __ _ (_)| | |___ \    /_  | 
-    /    \  / _ \| __| / _` | /    \  / _` || || |   __) |     | | 
-   / /\/\ \|  __/| |_ | (_| |/ /\/\ \| (_| || || |  / __/     _| |
-   \/    \/ \___| \__| \__,_|\/    \/ \__,_||_||_| |_____|(_)|____|
-'''
-)"""
-
-
-"""print('''
-
- 
-
-     e    e                  d8                                     ,e, 888       _-~88e        /~~88b       /~~88b 
-    d8b  d8b      e88~~8e  _d88__   /~~~8e  888-~88e-~88e   /~~~8e   "  888          888b      |   888      |   888 
-   d888bdY88b    d888  88b  888         88b 888  888  888       88b 888 888        __888"      `  d88P      `  d88P 
-  / Y88Y Y888b   8888__888  888    e88~-888 888  888  888  e88~-888 888 888          888e        d88P         d88P  
- /   YY   Y888b  Y888    ,  888   C888  888 888  888  888 C888  888 888 888          888P d88b  d88P   d88b  d88P   
-/          Y888b  "88___/   "88_/  "88_-888 888  888  888  "88_-888 888 888       ~-_88"  Y88P d88P___ Y88P d88P___ 
-                                                                                                                    
-
-''')"""
 print('''
 
  ,ggg, ,ggg,_,ggg,                              ,ggg, ,ggg,_,ggg,                                ad888888b,       ad888888b,       ad888888b, 
@@ -81,7 +55,7 @@ print(" ")
 print("Welcome to MetaMail 3.2.2, Best Off-Grid, Light-Weight and Secure E-mail Service with SHA-256 Encryptions")
 def meta():
     def cforpass():
-        foruser=input("Enter Your Username:")
+        foruser=input("Enter Your Username: ")
         c.execute("Select * from user")
         for row in c.fetchall():
               print("Question: ", row[2])
@@ -128,7 +102,7 @@ def meta():
         print("Logging out......")
         print("Sucessfully Logged out")
         clear()
-        o=input("Enter 1 to Login with Different Account and Press Enter to Exit ")
+        o=input("Enter 1 to Login with Different Account and Press Enter to Exit: ")
         if o=="1":
             meta()
         else:exit()
@@ -139,7 +113,7 @@ def meta():
         nuser=""
         npass=""
         cpass=""
-        nuser=input("Enter Your Username ")
+        nuser=input("Enter Your Username: ")
         nuser3="'%s'" %nuser
         c.execute('select * from user')
         for i in c.fetchall():
@@ -147,7 +121,7 @@ def meta():
                 suser()
             else:
                 pass
-        npass=getpass.getpass("Enter your password ")
+        npass=getpass.getpass("Enter Your Password: ")
         def encrypt_string(npass):
             sha_signature = \
                 hashlib.sha256(npass.encode()).hexdigest()
@@ -160,7 +134,7 @@ def meta():
                 hashlib.sha256(forpass.encode()).hexdigest()
             return sha_signature2
         sha_signature2 = encrypt_string(forpass)
-        cnpass=getpass.getpass("Re-enter the Password ")
+        cnpass=getpass.getpass("Re-enter the Password: ")
         if nuser=="" or npass=="":
             error()
         else:pass
@@ -222,14 +196,14 @@ def meta():
             mail()
         def frlist():
             print("Welcome to MetaFriends list ")
-            g=input("Enter 1 to add a Friend, 2 to Remove a Friend or 3 to return to Mail Box ")
+            g=input("Enter 1 to add a Friend, 2 to Remove a Friend or 3 to return to Mail Box: ")
             fuser='f%s'%x
             c.execute("select * from %s"%fuser)
             for usr in c.fetchall():
                 print(usr)
             def adfr():
                 i=6
-                adusr=input("Enter Username of your Friend ")
+                adusr=input("Enter Username of your Friend: ")
                 c.execute('insert into %s values("%s")'%(fuser,adusr))
                 dbc.commit()
                 c.execute("select * from %s"%fuser)
@@ -239,7 +213,7 @@ def meta():
                     frlist()
             def rmfr():
                 i=6
-                adusr=input("Enter Username of your Friend ")
+                adusr=input("Enter Username of your Friend: ")
                 c.execute('delete from %s where Friend="%s";'%(fuser,adusr))
                 dbc.commit()
                 c.execute("select * from %s"%fuser)
@@ -276,7 +250,7 @@ def meta():
                 for usr in c.fetchall():
                     print(usr)
             em()
-            lo=input("Enter 1 to Refresh Mail Box, 2 to Create Mail, 3 to Delete Mail, 4 to Edit Friends List and 5 to Logout ")
+            lo=input("Enter 1 to Refresh Mail Box, 2 to Create Mail, 3 to Delete Mail, 4 to Edit Friends List and 5 to Logout: ")
             if lo=="1":
                 while trep>0:
                     mail()
@@ -298,8 +272,8 @@ def meta():
             meta()
         def delmail():
             u=""
-            u=input("Enter the subject of Email you wish to delete ")
-            dat=input("Enter the date and time of the Email you wish to delete ")
+            u=input("Enter the subject of Email you wish to delete: ")
+            dat=input("Enter the date and time of the Email you wish to delete: ")
             if u=="":mail()
             else:pass
             c.execute('delete from %s where Subject="%s" AND date="%s";' %(x,u,dat))
@@ -315,9 +289,9 @@ def meta():
         z=""
         znew=""
         print("Welcome to MetaMail Login Page")
-        x=input("Enter your Username ")
+        x=input("Enter your Username: ")
         xnew="'%s'" %x
-        z=getpass.getpass("Enter Your Password ")
+        z=getpass.getpass("Enter Your Password :")
         def encrypt_string(z):
             sha_signature = \
                 hashlib.sha256(z.encode()).hexdigest()
@@ -330,7 +304,7 @@ def meta():
                 mail()
             else:error404()
         dbc.commit()
-    choice=input("Enter 1 to Login, 2 to Create New Account, 3 to Change Password (Forgot Password) or 4 to Exit ")
+    choice=input("Enter 1 to Login, 2 to Create New Account, 3 to Change Password (Forgot Password) or 4 to Exit: ")
     if choice=="1":
         login()
     elif choice=="2":
