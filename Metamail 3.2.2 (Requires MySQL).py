@@ -59,7 +59,7 @@ def meta():
         c.execute("Select * from user")
         for row in c.fetchall():
               print("Question: ", row[2])
-        forpass=input("Enter Answer of the Question: ")
+        forpass=getpass.getpass("Enter Answer of the Question: ")
         def encrypt_string(forpass):
             sha_signature2 = \
                 hashlib.sha256(forpass.encode()).hexdigest()
@@ -128,7 +128,7 @@ def meta():
             return sha_signature
         sha_signature = encrypt_string(npass)
         forques=input("Enter Your Question: ")
-        forpass=input("Enter the answer to the Question: ")
+        forpass=getpass.getpass("Enter the answer to the Question: ")
         def encrypt_string(forpass):
             sha_signature2 = \
                 hashlib.sha256(forpass.encode()).hexdigest()
