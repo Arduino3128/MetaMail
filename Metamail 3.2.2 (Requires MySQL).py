@@ -8,23 +8,23 @@ import getpass
 import mysql.connector
 select=0
    
-select=input("Enter 1 for LAN(localhost) or 2 for WAN(Internet) or Press Just 'Enter' to Customize Connection ")
+select=input("Enter 1 for LAN(localhost) or 2 for WAN(Internet) or Press Just 'Enter' to Customize Connection: ")
 if select=="1":
-    userinput=input("Enter Username(Contact Admin For Username) ")
-    passwdinput=input("Enter Password(Contact Admin For Password) ")
-    portinput=input("Enter Port No. of the Server(Contact Admin For Port No.) ")
+    userinput=input("Enter Username(Contact Admin For Username): ")
+    passwdinput=input("Enter Password(Contact Admin For Password): ")
+    portinput=input("Enter Port No. of the Server(Contact Admin For Port No.): ")
     hostinput="localhost"
 elif select=="2":
-    userinput=input("Enter Username(Contact Admin For Username) ")
-    passwdinput=input("Enter Password(Contact Admin For Password) ")
-    portinput=input("Enter Port No. of the Server(Contact Admin For Port No.) ")
+    userinput=input("Enter Username(Contact Admin For Username): ")
+    passwdinput=input("Enter Password(Contact Admin For Password): ")
+    portinput=input("Enter Port No. of the Server(Contact Admin For Port No.): ")
     hostinput="o.tcp.ngrok.io"
 
 else:
-    userinput=input("Enter Username(Contact Admin For Username) ")
-    passwdinput=input("Enter Password(Contact Admin For Password) ")
-    portinput=input("Enter Port No. of the Server(Contact Admin For Port No.) ")
-    hostinput=input("Enter host IP ")
+    userinput=input("Enter Username(Contact Admin For Username): ")
+    passwdinput=input("Enter Password(Contact Admin For Password): ")
+    portinput=input("Enter Port No. of the Server(Contact Admin For Port No.): ")
+    hostinput=input("Enter host IP "):
     
 dbc = mysql.connector.connect(
   host=hostinput,
