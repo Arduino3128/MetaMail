@@ -24,7 +24,7 @@ else:
     userinput=input("Enter Username(Contact Admin For Username): ")
     passwdinput=input("Enter Password(Contact Admin For Password): ")
     portinput=input("Enter Port No. of the Server(Contact Admin For Port No.): ")
-    hostinput=input("Enter host IP "):
+    hostinput=input("Enter host IP: ")
     
 dbc = mysql.connector.connect(
   host=hostinput,
