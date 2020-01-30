@@ -174,17 +174,23 @@ def meta():
                 print(usr)
             cc=input("To: ")
             ncc="'%s'" %cc
+            if cc=="":
+                cmail()
+            else:pass
+            p="0"
+            c.execute("select * from user")
+            for i in c.fetchall():
+                if ncc==i[0]:
+                    p="1"
+                    pass
+            if p=="1":
+                pass
+            else:
+                print("Username Not Found!")
+                time.sleep(2)
+                cmail()
             sub=input("Subject: ")
             cont=input("Content: ")
-            if cc=="":
-                uerror()
-            else:pass
-            list=(None)
-            c.execute("Select ID from user")
-            row3=c.fetchall()
-            if ncc or cc in row3 :
-                    pass
-            else:print("Not Found!")
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
             c.execute('insert into %s values("%s","%s","%s","%s")'%(cc, sub, cont,x,tandd))
@@ -196,17 +202,33 @@ def meta():
             mail()
         def frlist():
             print("Welcome to MetaFriends list ")
-            g=input("Enter 1 to add a Friend, 2 to Remove a Friend or 3 to return to Mail Box: ")
-            fuser='f%s'%x
+            usr=None
             c.execute("select * from %s"%fuser)
             for usr in c.fetchall():
-                print(usr)
+                print(usr)           
+            g=input("Enter 1 to add a Friend, 2 to Remove a Friend or 3 to return to Mail Box: ")
+            fuser='f%s'%x
+            
+
             def adfr():
                 i=6
+                t="0"
                 adusr=input("Enter Username of your Friend: ")
-                c.execute('insert into %s values("%s")'%(fuser,adusr))
-                dbc.commit()
+                adusr2="'%s'" %adusr
+                c.execute("select * from user")
+                for i in c.fetchall():
+                    if i[0]==adusr2:
+                        t="1"
+                        pass
+                if t=="1":
+                    pass
+                    c.execute('insert into %s values("%s")'%(fuser,adusr))
+                    dbc.commit()
+                else:
+                    print("Username Not Found!")
+                    adfr()
                 c.execute("select * from %s"%fuser)
+                usr=None
                 for usr in c.fetchall():
                     print(usr)
                 while i==6:
@@ -325,5 +347,6 @@ while d<20:
     #Added Password with SHA-256 Encryption
     #Added Change Password Functionality
     #Fixed Same Username Conflict Bug
-    
+    #Fixed Random Username Create Mail Bug
+    #Fixed Random Username Friend List Bug
 
