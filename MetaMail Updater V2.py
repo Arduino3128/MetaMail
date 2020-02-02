@@ -42,7 +42,7 @@ if d<c:
     pass
 else:VerUp()
         
-geturl=input('Enter "Update Server" Address(Visit: www.github.com/Arduino3128/MetaMail/blob/master/"Update Server" Address): ')
+geturl="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail.py"
 res="0"
 #os.rename("MetaMail.py", "MetaMailPrev.py")
 try:
