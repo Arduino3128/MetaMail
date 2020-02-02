@@ -5,6 +5,10 @@ Please follow the Steps to avoid any errors:
 	 Download Link: https://www.python.org/downloads/
 
 2. Run the "MySQL Connector Download.exe".
-3. Run "Metamail 3.2.2.py".
+3. *Only Follow this part if you have a MySQL Database*Run "MetaMail Database SetUp.py".
+4. Run "MetaMail.py".
+
+To Update MetaMail.py:
+1. Just Run "MetaMail Updater V2.py"
 
 Ngrok Authcode: 1WRKv6pwjZ0pbjSFpmDVrB3th2d_72o6qVZRRJNHe4UBnLRDM
