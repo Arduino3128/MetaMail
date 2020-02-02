@@ -9,6 +9,6 @@ Please follow the Steps to avoid any errors:
 4. Run "MetaMail.py".
 
 To Update MetaMail.py:
-1. Just Run "MetaMail Updater V2.py"
+1. Just Run "MetaMail Updater.py"
 
 Ngrok Authcode: 1WRKv6pwjZ0pbjSFpmDVrB3th2d_72o6qVZRRJNHe4UBnLRDM
