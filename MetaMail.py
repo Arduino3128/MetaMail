@@ -6,7 +6,13 @@ import hashlib
 
 clear=lambda:os.system("cls")
 import getpass 
-import mysql.connector
+try:
+   import mysql.connector
+except:
+   print("MySQL Connector not found! Running MySQL Connector Download.exe")
+   os.system("MySQL_Connector_Download.exe")
+   os.system("python.exe MetaMail.py")
+   time.sleep(5)
 select=0
    
 select=input("Enter 1 for LAN(localhost) or 2 for WAN(Internet) or Press Just 'Enter' to Customize Connection: ")
