@@ -1,8 +1,7 @@
 import time
 import mysql.connector
 print(" ")
-print("Welcome to MetaMail 3.2.2 Setup!")
-print("Welcome to MetaMail 3.2.2, Best Off-Grid, Light-Weight and Secure E-mail Service with SHA-256 Encryptions")
+print("Welcome to MetaMail Database Setup!")
 print("")
 time.sleep(2)
 select=input("Enter 1 for LAN(localhost) or 2 for WAN(Internet) or Press Just 'Enter' to Customize Connection ")
