@@ -110,11 +110,11 @@ def Get():
     try:
         geturl5="https://github.com/Arduino3128/MetaMail/blob/master/MySQL_Connector_Download.exe?raw=true"
         r5=requests.get(geturl5, allow_redirects=True)
-        open("MySQL Connector Downloader.exe ",'wb').write(r5.content)
-        print("MySQL Connector Downloader.exe Downloaded Sucessfully.")
+        open("MySQL_Connector_Download.exe ",'wb').write(r5.content)
+        print("MySQL Connector Download.exe Downloaded Sucessfully.")
         rt="1"
     except:
-        print("Error! Failed To download MySQL Connector Downloader.exe..Exiting..")
+        print("Error! Failed To download MySQL Connector Download.exe..Exiting..")
         time.sleep(2)
         exit()
     if rt=="1":
