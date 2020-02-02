@@ -4,9 +4,10 @@ import re
 import os
 import time
 def VerUp():
-    print("Version Upto Date! Not Upgradung....")
+    print("Version Upto Date! Not Upgrading....")
     metaVersion.close()
     os.remove("MetaVersion.txt")
+    os.rename("MetaMailPrev.py", "MetaMail.py")
     time.sleep(3)
     exit()
 print("Welcome To MetaMail Updater.")
