@@ -1,4 +1,4 @@
-#Version 3.2.2.1
+#Version 3.2.2.2
 from datetime import datetime
 import time
 import os
@@ -73,6 +73,7 @@ def meta():
                print("Username not Found!")
                time.sleep(2)
                meta()
+               clear()
         c.execute('Select * from user where ID="%s"'%foruser2)
         for row in c.fetchall():
               print("Question: ", row[2])
@@ -93,12 +94,15 @@ def meta():
                             hashlib.sha256(newpass.encode()).hexdigest()
                         return sha_signature
                     sha_signature = encrypt_string(newpass)
+                    nforpass3="'%s'"%sha_signature
                     if newpass==cnewpass:
-                          c.execute('UPDATE user SET  Password="%s" where ID="%s"' %(sha_signature, foruser) )
+                          c.execute('UPDATE user SET  Password="%s" where ID="%s"' %(nforpass3, foruser2))
+                          dbc.commit()
                           print("You Have Sucessfullly Changed Your Password!")
                           tandd=datetime.today()
                           tandd=tandd.strftime("%c")
                           c.execute("insert into %s values('Password Changed','You have changed Your Password', 'Metamail Support', '%s')"%(foruser, tandd))
+                          dbc.commit()
                     else:
                           print("Incorrect Password!")
                           time.sleep(1)
@@ -374,3 +378,4 @@ while d<20:
     #Fixed Random Username Create Mail Bug
     #Fixed Random Username Friend List Bug
     #Fixed General Issue Bugs
+    #Fixed Major Issues
