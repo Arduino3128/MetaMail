@@ -62,6 +62,7 @@ print(" ")
 print("Welcome to MetaMail 3.2.2, Best Off-Grid, Light-Weight and Secure E-mail Service with SHA-256 Encryptions")
 def meta():
     def cforpass():
+        clear()
         foruser=input("Enter Your Username: ")
         foruser2="'%s'"%foruser
         c.execute("Select * from user")
