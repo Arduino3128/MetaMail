@@ -1,4 +1,4 @@
-#Version 3.2.2
+#Version 3.2.2.1
 from datetime import datetime
 import time
 import os
@@ -63,7 +63,16 @@ print("Welcome to MetaMail 3.2.2, Best Off-Grid, Light-Weight and Secure E-mail 
 def meta():
     def cforpass():
         foruser=input("Enter Your Username: ")
+        foruser2="'%s'"%foruser
         c.execute("Select * from user")
+        for j in c.fetchall():
+            if foruser2 in j:
+               break
+            else:
+               print("Username not Found!")
+               time.sleep(2)
+               meta()
+        c.execute('Select * from user where ID="%s"'%foruser2)
         for row in c.fetchall():
               print("Question: ", row[2])
         forpass=getpass.getpass("Enter Answer of the Question: ")
@@ -73,7 +82,7 @@ def meta():
             return sha_signature2
         sha_signature2 = encrypt_string(forpass)
         nforpass="'%s'"%sha_signature2
-        c.execute("select * from user")
+        c.execute('select * from user where ID="%s"'%foruser2)
         for row in c.fetchall():
               if nforpass==row[3]:
                     newpass=getpass.getpass("Enter New Password: ")
@@ -122,10 +131,12 @@ def meta():
         cpass=""
         nuser=input("Enter Your Username: ")
         nuser3="'%s'" %nuser
+        nuserl=str.lower(nuser3)
+        nuseru=str.upper(nuser3)
         c.execute('select * from user')
         for i in c.fetchall():
-            if i[0]==nuser3:
-                suser()
+            if nuser3 in i or nuserl in i or nuseru in i:
+               suser()
             else:
                 pass
         npass=getpass.getpass("Enter Your Password: ")
@@ -148,9 +159,13 @@ def meta():
         
         def crmail():
             fuser='f%s'%nuser
-            c.execute('insert into user values("%s","%s","%s","%s")', (nuser, sha_signature, forques, sha_signature2))
-            c.execute('create table %s(Subject varchar(255), Mail LONGTEXT, SentBy varchar(255), date varchar(255))' %nuser)
-            c.execute('create table %s(Friend varchar(100))'%fuser)
+            try:
+               c.execute('insert into user values("%s","%s","%s","%s")', (nuser, sha_signature, forques, sha_signature2))
+               c.execute('create table %s(Subject varchar(255), Mail LONGTEXT, SentBy varchar(255), date varchar(255))' %nuser)
+               c.execute('create table %s(Friend varchar(100))'%fuser)
+            except:
+               print("Unknown Error! Maybe another user exists with same username!")
+               suser()
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
             c.execute('insert into %s values("Welcome To MetaMail", "Welcome to MetaMail %s", "MetaMail Support","%s")' %(nuser,nuser,tandd))      
@@ -357,4 +372,4 @@ while d<20:
     #Fixed Same Username Conflict Bug
     #Fixed Random Username Create Mail Bug
     #Fixed Random Username Friend List Bug
-
+    #Fixed General Issue Bugs
