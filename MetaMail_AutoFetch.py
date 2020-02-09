@@ -125,7 +125,7 @@ def Get():
         print("Exiting...")
         time.sleep(5)
         exit()
-if Agreement=="Yes" or Agreement=="yes" or Agreement=="y":
+if Agreement=="Yes" or Agreement=="yes" or Agreement=="y" or Agreement=="Y":
     Get()
 else:
     print("Agreement Denied!")
