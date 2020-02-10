@@ -277,22 +277,22 @@ def meta():
                 print(usr)           
             g=input("Enter 1 to add a Friend, 2 to Remove a Friend or 3 to return to Mail Box: ")
             
-            
-
             def adfr():
                 clear()
                 logo()
                 i=6
                 t="0"
+                adusr=""
                 adusr=input("Enter Username of your Friend: ")
                 adusr2="'%s'" %adusr
+                if adusr=="":
+                    frlist()
+                else:pass
                 c.execute("select * from user")
                 for i in c.fetchall():
                     if i[0]==adusr2:
                         t="1"
-                        pass
                 if t=="1":
-                    pass
                     c.execute('insert into %s values("%s")'%(fuser,adusr))
                     dbc.commit()
                 else:
@@ -307,12 +307,16 @@ def meta():
             def rmfr():
                 logo()
                 i=6
+                adusr=""
                 adusr=input("Enter Username of your Friend: ")
+                if adusr=="":
+                    frlist()
+                else:pass
                 c.execute('delete from %s where Friend="%s";'%(fuser,adusr))
                 dbc.commit()
-                c.execute("select * from %s"%fuser)
+                """c.execute("select * from %s"%fuser)
                 for usr in c.fetchall():
-                    print(usr)
+                    print(usr)"""
                 while i==6:
                     frlist()
                 
@@ -366,11 +370,10 @@ def meta():
             print("")
             meta()
         def delmail():
-            logo()
-            u=""
+            u="!@#$%^&*()"
             u=input("Enter the subject of Email you wish to delete: ")
             dat=input("Enter the date and time of the Email you wish to delete: ")
-            if u=="":mail()
+            if u=="!@#$%^&*()":mail()
             else:pass
             c.execute('delete from %s where Subject="%s" AND date="%s";' %(x,u,dat))
             dbc.commit()
@@ -427,3 +430,4 @@ while d<20:
     #Fixed General Issue Bugs
     #Fixed Major Issues
     #Added Logo Def.
+    #Bug Fix: FriendList Bug Fixed
