@@ -1,6 +1,7 @@
-#Version 3.2.2.3
-Ver=r"b'#Version 3.2.2.3\n'"
+#Version 3.2.2.4
+Ver=r"b'#Version 3.2.2.4\n'"
 def logo():
+    clear()
     print('''
 
      ,ggg, ,ggg,_,ggg,                              ,ggg, ,ggg,_,ggg,                                ad888888b,       ad888888b,       ad888888b, 
@@ -90,6 +91,7 @@ def meta():
     logo()
     def cforpass():
         clear()
+        logo()
         foruser=input("Enter Your Username: ")
         foruser2="'%s'"%foruser
         c.execute("Select * from user")
@@ -148,8 +150,11 @@ def meta():
     def logout():
         print("Thank You for using MetaMail 3.2.2")
         print("Logging out......")
+        time.sleep(1)
         print("Sucessfully Logged out")
+        time.sleep(2)
         clear()
+        logo()
         o=input("Enter 1 to Login with Different Account and Press Enter to Exit: ")
         if o=="1":
             meta()
@@ -157,6 +162,7 @@ def meta():
 
     def cacc():
         dbc.reset_session()
+        logo()
         print("Create Your account")
         nuser=""
         npass=""
@@ -212,6 +218,12 @@ def meta():
                 
 
     def login():
+        logo()
+        def mdirect():
+            print("Unknown Error! Returning To Mail Box!")
+            print("")
+            mail()
+            
         def uerror():
             print("")
             print("Username not found! Returning to your Mail box")
@@ -221,6 +233,7 @@ def meta():
             ermail()
         def cmail():
             clear()
+            logo()
             print("Compose Mail")
             fuser='f%s'%x
             c.execute("select * from %s"%fuser)
@@ -229,7 +242,7 @@ def meta():
             cc=input("To: ")
             ncc="'%s'" %cc
             if cc=="":
-                cmail()
+                mdirect()
             else:pass
             p="0"
             c.execute("select * from user")
@@ -255,6 +268,7 @@ def meta():
             time.sleep(1)
             mail()
         def frlist():
+            logo()
             print("Welcome to MetaFriends list ")
             fuser='f%s'%x
             usr=None
@@ -266,6 +280,8 @@ def meta():
             
 
             def adfr():
+                clear()
+                logo()
                 i=6
                 t="0"
                 adusr=input("Enter Username of your Friend: ")
@@ -289,6 +305,7 @@ def meta():
                 while i==6:
                     frlist()
             def rmfr():
+                logo()
                 i=6
                 adusr=input("Enter Username of your Friend: ")
                 c.execute('delete from %s where Friend="%s";'%(fuser,adusr))
@@ -312,6 +329,7 @@ def meta():
             trep=1
             def em():
                 clear()
+                logo()
                 print("Welcome To Your Inbox")
                 dbc.reset_session()
                 c.execute("Select * from %s " % x)
@@ -348,6 +366,7 @@ def meta():
             print("")
             meta()
         def delmail():
+            logo()
             u=""
             u=input("Enter the subject of Email you wish to delete: ")
             dat=input("Enter the date and time of the Email you wish to delete: ")
@@ -365,6 +384,7 @@ def meta():
         xnew=""
         z=""
         znew=""
+        logo()
         print("Welcome to MetaMail Login Page")
         x=input("Enter your Username: ")
         xnew="'%s'" %x
