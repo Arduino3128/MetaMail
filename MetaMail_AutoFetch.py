@@ -79,7 +79,7 @@ def Get():
         time.sleep(2)
         exit()
     try:
-        geturl2="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail%20Updater%20V2.py"
+        geturl2="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail_Updater.py"
         r2=requests.get(geturl2, allow_redirects=True)
         open("MetaMail Updater.py", "wb").write(r2.content)
         print("MetaMail Updater.py Downloaded Sucessfully.")
