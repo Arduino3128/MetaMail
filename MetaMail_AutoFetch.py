@@ -88,10 +88,10 @@ def Get():
         time.sleep(2)
         exit()        
     try:
-        geturl3="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/Metamail%20Database%20Setup.py"
+        geturl3="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/Metamail_Database_Setup.py"
         r3=requests.get(geturl3, allow_redirects=True)
-        open("MetaMail Database Setup.py",'wb').write(r3.content)
-        print("MetaMail Database Setup.py Downloaded Sucessfully.")
+        open("MetaMail_Database_Setup.py",'wb').write(r3.content)
+        print("MetaMail_Database_Setup.py Downloaded Sucessfully.")
     except:
         print("Error! Failed To download MetaMail Database Setup.py...Exiting..")
         time.sleep(2)
@@ -103,16 +103,6 @@ def Get():
         print("ReadMe.txt Downloaded Sucessfully.")
     except:
         print("Error! Failed To download ReadMe.txt...Exiting..")
-        time.sleep(2)
-        exit()
-    try:
-        geturl5="https://github.com/Arduino3128/MetaMail/blob/master/MySQL_Connector_Download.exe?raw=true"
-        r5=requests.get(geturl5, allow_redirects=True)
-        open("MySQL_Connector_Download.exe ",'wb').write(r5.content)
-        print("MySQL Connector Download.exe Downloaded Sucessfully.")
-        rt="1"
-    except:
-        print("Error! Failed To download MySQL Connector Download.exe..Exiting..")
         time.sleep(2)
         exit()
     if rt=="1":
