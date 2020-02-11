@@ -284,7 +284,7 @@ def meta():
             def adfr():
                 clear()
                 logo()
-                i=6
+                ic=6
                 t="0"
                 adusr=""
                 adusr=input("Enter Username of your Friend: ")
@@ -306,11 +306,11 @@ def meta():
                 usr=None
                 for usr in c.fetchall():
                     print(usr)
-                while i==6:
+                while ic==6:
                     frlist()
             def rmfr():
                 logo()
-                i=6
+                ic=6
                 adusr=""
                 adusr=input("Enter Username of your Friend: ")
                 if adusr=="":
@@ -318,10 +318,7 @@ def meta():
                 else:pass
                 c.execute('delete from %s where Friend="%s";'%(fuser,adusr))
                 dbc.commit()
-                """c.execute("select * from %s"%fuser)
-                for usr in c.fetchall():
-                    print(usr)"""
-                while i==6:
+                while ic==6:
                     frlist()
                 
                                                    
