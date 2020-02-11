@@ -101,6 +101,7 @@ def Get():
         r4=requests.get(geturl4, allow_redirects=True)
         open("ReadMe.txt",'wb').write(r4.content)
         print("ReadMe.txt Downloaded Sucessfully.")
+        rt="1"
     except:
         print("Error! Failed To download ReadMe.txt...Exiting..")
         time.sleep(2)
