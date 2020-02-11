@@ -1,16 +1,14 @@
 import time
-import os
+import subprocess
 try:
     import requests
     import re
 except:
-    print("'Requests' Library Not Installed.... Running 'Requests Download.exe'")
-    os.system("Requests_Download.exe")
-    os.system("python MetaMail_AutoFetch.py")
-    time.sleep(10)
+    print("'Requests' Library Not Installed...Starting 'Request' Module installing Procedure!")
+    piploc=input("Enter the directory path of Python ")
+    subprocess.call("cd %s/Scripts && pip install requests && exit"%piploc, shell=True)
+    subprocess.call("python MetaMail_AutoFetch.py", shell=True)
     exit()
-
-    
 print("Welcome to MetaMail AutoFetch Installer")
 
 print("""
