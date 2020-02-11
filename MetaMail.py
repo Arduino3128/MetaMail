@@ -30,6 +30,15 @@ import re
 import subprocess
 clear=lambda:os.system("cls")
 import getpass
+try:
+   import mysql.connector
+except:
+   print("MySQL Connector not found! Starting 'Request' Module installing Procedure!")
+   piploc=input("Enter the directory path of Python: ")
+   subprocess.call("cd %s/Scripts && pip install mysql-connector-python"%piploc, shell=True)
+   subprocess.call("python MetaMail.py", shell=True)
+   exit()
+   time.sleep(5)
 ####################
 try:
     geturl1="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/Version.txt"
@@ -52,15 +61,7 @@ else:
    print("You're running Latest Version!")
    time.sleep(1)
    clear()
-try:
-   import mysql.connector
-except:
-   print("MySQL Connector not found! Starting 'Request' Module installing Procedure!")
-   piploc=input("Enter the directory path of Python: ")
-   subprocess.call("cd %s/Scripts && pip install mysql-connector-python"%piploc, shell=True)
-   subprocess.call("python MetaMail.py", shell=True)
-   exit()
-   time.sleep(5)
+
 select=0
 logo()   
 select=input("Enter 1 for LAN(localhost) or 2 for WAN(Internet) or Press Just 'Enter' to Customize Connection: ")
