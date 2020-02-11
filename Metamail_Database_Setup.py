@@ -1,10 +1,13 @@
 import time
+import subprocess
 try:
    import mysql.connector
 except:
-   print("MySQL Connector not found! Running MySQL Connector Download.exe")
-   os.system("MySQL_Connector_Download.exe")
-   os.system("python.exe MetaMail.py")
+   print("MySQL Connector not found! Starting 'mysql-connector-python' Module installing Procedure!")
+   piploc=input("Enter the directory path of Python: ")
+   subprocess.call("cd %s/Scripts && pip install mysql-connector-python"%piploc, shell=True)
+   subprocess.call("python MetaMail_Database_Setup.py", shell=True)
+   exit()
    time.sleep(5)
 print(" ")
 print("Welcome to MetaMail Database Setup!")
