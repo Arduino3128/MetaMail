@@ -4,9 +4,9 @@ try:
     import requests
     import re
 except:
-    print("'Requests' Library Not Installed...Starting 'Request' Module installing Procedure!")
-    piploc=input("Enter the directory path of Python ")
-    subprocess.call("cd %s/Scripts && pip install requests && exit"%piploc, shell=True)
+    print("'Requests' Library Not Installed...Starting 'Requests' as well as 'mysql-connector-python' Module installing Procedure!")
+    piploc=input("Enter the directory path of Python: ")
+    subprocess.call("cd %s/Scripts && pip install requests && pip install mysql-connector-python"%piploc, shell=True)
     subprocess.call("python MetaMail_AutoFetch.py", shell=True)
     exit()
 print("Welcome to MetaMail AutoFetch Installer")
