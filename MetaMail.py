@@ -1,5 +1,5 @@
-#Version 3.2.2.5
-Ver=r"b'#Version 3.2.2.5\n'"
+#Version 3.2.2.6
+Ver=r"b'#Version 3.2.2.6\n'"
 def logo():
     clear()
     print('''
