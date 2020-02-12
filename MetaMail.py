@@ -1,5 +1,5 @@
-#Version 3.2.2.6
-Ver=r"b'#Version 3.2.2.6\n'"
+#Version 3.2.2.7
+Ver=r"b'#Version 3.2.2.7\n'"
 def logo():
     clear()
     print('''
@@ -24,11 +24,20 @@ def logo():
 from datetime import datetime
 import time
 import os
+import platform
 import hashlib
 import requests
 import re
 import subprocess
-clear=lambda:os.system("cls")
+osident=platform.system()
+if "Windows" in osident:
+    clear=lambda:os.system("cls")
+elif "Linux" in osident:
+    clear=lambda:os.system("clear")
+elif "Darwin" in osident:
+    clear=lambda:os.system("clear")
+else:
+    print("Unknown O.S. Using Default 'Windows Configuration'")
 import getpass
 try:
    import mysql.connector
@@ -432,3 +441,4 @@ while d<20:
     #Fixed Major Issues
     #Added Logo Def.
     #Bug Fix: FriendList Bug Fixed
+    #Added Multi OS Clear Functionality
