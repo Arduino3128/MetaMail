@@ -83,7 +83,7 @@ elif select=="2":
     userinput=input("Enter Username(Contact Admin For Username): ")
     passwdinput=input("Enter Password(Contact Admin For Password): ")
     portinput=input("Enter Port No. of the Server(Contact Admin For Port No.): ")
-    hostinput="o.tcp.ngrok.io"
+    hostinput="o.tcp.in.ngrok.io" #Remove ".in" from the URL If URL region is 'US', Currently in 'IN' Mode.
 
 else:
     userinput=input("Enter Username(Contact Admin For Username): ")
@@ -401,7 +401,7 @@ def meta():
         print("Welcome to MetaMail Login Page")
         x=input("Enter your Username: ")
         xnew="'%s'" %x
-        z=getpass.getpass("Enter Your Password :")
+        z=getpass.getpass("Enter Your Password: ")
         def encrypt_string(z):
             sha_signature = \
                 hashlib.sha256(z.encode()).hexdigest()
