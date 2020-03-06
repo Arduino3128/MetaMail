@@ -51,7 +51,7 @@ except:
    print("MySQL Connector not found! Starting 'Request' Module installing Procedure!")
    piploc=input("Enter the directory path of Python: ")
    subprocess.call("cd %s/Scripts && pip install mysql-connector-python"%piploc, shell=True)
-   subprocess.call("python MetaMail.py", shell=True)
+   subprocess.call("MetaMail.exe", shell=True)
    exit()
    time.sleep(5)
 ####################
@@ -294,6 +294,8 @@ def meta():
                 time.sleep(2)
                 cmail()
             sub=input("Subject: ")
+            sub=sub.replace("'", "\\'")
+            sub=sub.replace('"', '\\"')
             cont=input("Content: ")
             cont=cont.replace("'", "\\'")
             cont=cont.replace('"', '\\"')
@@ -406,10 +408,12 @@ def meta():
             print("")
             meta()
         def delmail():
-            u="!@#$%^&*()"
+            u="!@#$%^&*()'"
             u=input("Enter the subject of Email you wish to delete: ")
+            u=u.replace("'", "\\'")
+            u=u.replace('"', '\\"')
             dat=input("Enter the date and time of the Email you wish to delete: ")
-            if u=="!@#$%^&*()":mail()
+            if u=="!@#$%^&*()'":mail()
             else:pass
             c.execute('delete from %s where Subject="%s" AND date="%s";' %(x,u,dat))
             dbc.commit()
