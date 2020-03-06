@@ -1,8 +1,10 @@
-#Version 3.2.2.8
-Ver=r"b'#Version 3.2.2.8\n'"
+#Version 3.2.2.9
+import random
+Ver=r"b'#Version 3.2.2.9\n'"
 def logo():
     clear()
-    print('''
+    colour=random.randint(31,37)
+    print('''\033[1;%s;40m
 
      ,ggg, ,ggg,_,ggg,                              ,ggg, ,ggg,_,ggg,                                ad888888b,       ad888888b,       ad888888b, 
     dP""Y8dP""Y88P""Y8b             I8             dP""Y8dP""Y88P""Y8b                    ,dPYb,    d8"     "88      d8"     "88      d8"     "88 
@@ -15,7 +17,7 @@ def logo():
          88    88    Y8, `YbadP'  ,d88b, ,d8,   ,d8b,   88    88    Y8,,d8,   ,d8b,_,88,_,d8b,_     Y8,     a88  d8b a88"         d8b a88"        
          88    88    `Y8888P"Y88888P""Y88P"Y8888P"`Y8   88    88    `Y8P"Y8888P"`Y88P""Y88P'"Y88     "Y888888P'  Y8P 88888888888  Y8P 88888888888 
                                                                                                                                               
-    ''')
+\n'''%colour)
     print(" ")
     print(" ")
     print("Welcome to MetaMail 3.2.2, Best Off-Grid, Light-Weight and Secure E-mail Service with SHA-256 Encryptions")
@@ -293,6 +295,8 @@ def meta():
                 cmail()
             sub=input("Subject: ")
             cont=input("Content: ")
+            cont=cont.replace("'", "\\'")
+            cont=cont.replace('"', '\\"')
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
             c.execute('insert into %s values("%s","%s","%s","%s")'%(cc, sub, cont,x,tandd))
@@ -465,3 +469,4 @@ while d<20:
     #Bug Fix: FriendList Bug Fixed
     #Added Multi OS Clear Functionality
     #Added IN-BUILT Update Feature
+    #Fixed Major Bug in Database Text saving(<">and<'>)
