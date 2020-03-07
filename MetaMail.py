@@ -47,7 +47,7 @@ except:
    print("MySQL Connector not found! Starting 'Request' Module installing Procedure!")
    piploc=input("Enter the directory path of Python: ")
    subprocess.call("cd %s/Scripts && pip install mysql-connector-python"%piploc, shell=True)
-   subprocess.call("MetaMail.exe", shell=True)
+   subprocess.call("MetaMail.py", shell=True)
    exit()
    time.sleep(5)
 ####################
