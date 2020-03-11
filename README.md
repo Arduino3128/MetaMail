@@ -26,5 +26,6 @@ Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/raw/ma
      #Added IN-BUILT Update Feature  
      #Fixed Major Bug in Database Text saving(<">and<'>)  
      #Added 24x7 Server Run Functionality
+     #Fixed variable Issue
     
 
