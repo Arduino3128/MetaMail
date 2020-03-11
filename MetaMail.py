@@ -12,7 +12,8 @@ def logo():
                  ██╔████╔██║█████╗     ██║   ███████║██╔████╔██║███████║██║██║          █████╔╝    █████╔╝    █████╔╝
                  ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║╚██╔╝██║██╔══██║██║██║          ╚═══██╗   ██╔═══╝     ╚═══██╗
                  ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║██║ ╚═╝ ██║██║  ██║██║███████╗    ██████╔╝██╗███████╗██╗██████╔╝
-                 ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝    ╚═════╝ ╚═╝╚══════╝╚═╝╚═════╝ 
+                 ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝    ╚═════╝ ╚═╝╚══════╝╚═╝╚═════╝
+                                            [Script By: Kanad Nemade | Github: Arduino3128]
 \n'''%colour)
     print(" ")
     print(" ")
@@ -25,11 +26,11 @@ import os
 import shutil
 import platform
 import hashlib
-import requests
 import re
 import subprocess
 getdir=os.getcwd()
 path="/MetaMail Updated"
+r1="None"
 pathUp=getdir+path
 osident=platform.system()
 if "Windows" in osident:
@@ -43,11 +44,18 @@ else:
 import getpass
 try:
    import mysql.connector
+   import requests
 except:
-   print("MySQL Connector not found! Starting 'Request' Module installing Procedure!")
-   piploc=input("Enter the directory path of Python: ")
-   subprocess.call("cd %s/Scripts && pip install mysql-connector-python"%piploc, shell=True)
-   subprocess.call("MetaMail.py", shell=True)
+   print("'MySQL Connector or Requests' not found! Starting 'Requests and MySQL Connector' Module installing Procedure!")
+   if osident=="Windows":
+       piploc=input("Enter the directory path of Python: ")
+       subprocess.call("cd %s/Scripts && pip install mysql-connector-python requests"%piploc, shell=True)
+       subprocess.call("MetaMail.py", shell=True)
+   elif osident=="Linux" or osident=="Darwin":
+       subprocess.call("pip install requests mysql-connector-python", shell=True)
+       subprocess.call("python3 MetaMail.py", shell=True)
+   else:
+       print("Unknown OS, Try Installing 'mysql-connector-python & requests' manually!")
    exit()
    time.sleep(5)
 ####################
@@ -470,4 +478,5 @@ while d<20:
     #Added Multi OS Clear Functionality
     #Added IN-BUILT Update Feature
     #Fixed Major Bug in Database Text saving(<">and<'>)
-    #Added 24X7 Running Server
+    #Added 24x7 Running Server
+    #Fixed variable Issue
