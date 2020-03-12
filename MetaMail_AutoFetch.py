@@ -88,7 +88,7 @@ def Get():
         time.sleep(2)
         exit()        
     try:
-        geturl3="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/Metamail_Database_Setup.py"
+        geturl3="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail_Database_Setup.py"
         r3=requests.get(geturl3, allow_redirects=True)
         open("MetaMail_Database_Setup.py",'wb').write(r3.content)
         print("MetaMail_Database_Setup.py Downloaded Sucessfully.")
