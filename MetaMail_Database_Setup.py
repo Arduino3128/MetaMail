@@ -36,6 +36,7 @@ dbc = mysql.connector.connect(
   user=userinput,
   passwd=passwdinput,
   port=portinput
+  auth_plugin='caching_sha2_password'
   )
 c = dbc.cursor()
 print("Please Wait Setup is Running.....")
