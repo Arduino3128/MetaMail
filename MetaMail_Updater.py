@@ -12,6 +12,7 @@ def VerUp():
     time.sleep(3)
     exit()
 print("Welcome To MetaMail Updater.")
+print("MetaMail_Updater is no longer supported by MetaMailSupport!")
 try:
     os.rename("MetaMail.py", "MetaMailPrev.py")
     metamail=open("MetaMailPrev.py", "r")
