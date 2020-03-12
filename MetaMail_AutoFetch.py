@@ -1,14 +1,23 @@
 import time
 import subprocess
+import platform
+osident=platform.system()
 try:
-    import requests
-    import re
+   import mysql.connector
+   import requests
 except:
-    print("'Requests' Library Not Installed...Starting 'Requests' as well as 'mysql-connector-python' Module installing Procedure!")
-    piploc=input("Enter the directory path of Python: ")
-    subprocess.call("cd %s/Scripts && pip install requests && pip install mysql-connector-python"%piploc, shell=True)
-    subprocess.call("python MetaMail_AutoFetch.py", shell=True)
-    exit()
+   print("'MySQL Connector or Requests' not found! Starting 'Requests and MySQL Connector' Module installing Procedure!")
+   if osident=="Windows":
+       piploc=input("Enter the directory path of Python: ")
+       subprocess.call("cd %s/Scripts && pip install mysql-connector-python requests"%piploc, shell=True)
+       subprocess.call("MetaMail_AutoFetch.py", shell=True)
+   elif osident=="Linux" or osident=="Darwin":
+       subprocess.call("pip install requests mysql-connector-python", shell=True)
+       subprocess.call("python3 MetaMail_AutoFetch.py", shell=True)
+   else:
+       print("Unknown OS, Try Installing 'mysql-connector-python & requests' manually!")
+   exit()
+   time.sleep(5)
 print("Welcome to MetaMail AutoFetch Installer")
 
 print("""
@@ -68,7 +77,7 @@ def End():
     exit()
 Agreement=input("Do You Agree this EULA? Yes/No/y/n: ")
 print("Welcome to MetaMail AutoFetch Installer")
-def Get():
+def GetAdv():
     try:
         geturl1="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail.py"
         r=requests.get(geturl1, allow_redirects=True)
@@ -114,12 +123,44 @@ def Get():
         print("Exiting...")
         time.sleep(5)
         exit()
+def GetBas():
+       try:
+              geturl1="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail.py"
+              r=requests.get(geturl1, allow_redirects=True)
+              open("MetaMail.py",'wb').write(r.content)
+              print("MetaMail.py Downloaded Sucessfully.")
+       except:
+              print("Error! Failed To download MetaMail.py...Exiting..")
+              time.sleep(2)
+              exit()
+       try:
+              geturl4="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/ReadMe%20First.txt"
+              r4=requests.get(geturl4, allow_redirects=True)
+              open("ReadMe.txt",'wb').write(r4.content)
+              print("ReadMe.txt Downloaded Sucessfully.")
+              rt="1"
+       except:
+              print("Error! Failed To download ReadMe.txt...Exiting..")
+              time.sleep(2)
+              exit()
+       if rt=="1":
+              End()
+       elif rt=="0":
+              print("Something Went Wrong....")
+              print("Delete any file Downloaded and Try Again....")
+              print("Exiting...")
+              time.sleep(5)
+              exit()
+def ModSel():
+       mode=input("Enter 1 for Basic Download or 2 for Advance Download(Default:1): ")
+       if mode=="2":
+              GetAdv()
+       else:
+              GetBas()      
 if Agreement=="Yes" or Agreement=="yes" or Agreement=="y" or Agreement=="Y":
-    Get()
+       ModSel()
 else:
     print("Agreement Denied!")
     print("Exiting...")
     time.sleep(5)
     exit()
-
-
