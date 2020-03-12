@@ -1,7 +1,10 @@
 # MetaMail
 Off-Grid E-Mail Service with SHA-256 Password Encryptions.
   
-## What's New?  
+## What's New? 
+
+### ~Release(3.2.3.1)  
+Fixed Minor Bugs  
   
 ### ~Release(3.2.3.0)  
 Now MetaMail Server Runs 24X7!  
