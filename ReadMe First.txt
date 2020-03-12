@@ -1,10 +1,9 @@
-Hi,
-Thank You for choosing Metamail.
+Thank You for choosing MetaMail!
 Please follow the Steps to avoid any errors:
 1. Download and Install "Python 3.x.x" on your Computer.
 	 Download Link: https://www.python.org/downloads/
 
-2. *Only Follow this part if you have a MySQL Database* Run "MetaMail Database SetUp.py".
+2. *Only Follow this part if you have a MySQL Database* Run "MetaMail Database Setup.py"(Only Available in Advance Download option).
 3. Run "MetaMail.py".
 
 T̶o̶ ̶U̶p̶d̶a̶t̶e̶ ̶M̶e̶t̶a̶M̶a̶i̶l̶.̶p̶y̶:̶
