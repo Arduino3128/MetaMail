@@ -17,5 +17,3 @@ To Update MetaMail.py:
 If you face any difficulty or want to report an issue or a bug:  
 1. Write Mail to "MetaMailSupport" on MetaMail. 
 2. Open issue on GitHub.  
-
-Ngrok Authcode: 1WRKv6pwjZ0pbjSFpmDVrB3th2d_72o6qVZRRJNHe4UBnLRDM
