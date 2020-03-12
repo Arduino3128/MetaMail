@@ -481,3 +481,4 @@ while d<20:
     #Fixed Major Bug in Database Text saving(<">and<'>)
     #Added 24x7 Running Server
     #Fixed variable Issue
+    #Added support for auth_plugin='caching_sha2_password'
