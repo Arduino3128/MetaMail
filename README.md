@@ -27,5 +27,6 @@ Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/raw/ma
      #Fixed Major Bug in Database Text saving(<">and<'>)  
      #Added 24x7 Server Run Functionality
      #Fixed variable Issue
+     #Added support for auth_plugin='caching_sha2_password'
     
 
