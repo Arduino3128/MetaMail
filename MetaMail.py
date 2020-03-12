@@ -124,8 +124,9 @@ dbc = mysql.connector.connect(
   user=userinput,
   passwd=passwdinput,
   database="metamailuser",
-  port=portinput
-  )
+  port=portinput,
+  auth_plugin='caching_sha2_password'
+)
 c = dbc.cursor()
 clear()
 def meta():
