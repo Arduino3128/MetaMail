@@ -1,6 +1,6 @@
-#Version 3.2.3.0
+#Version 3.2.3.1
 import random
-Ver=r"b'#Version 3.2.3.0\n'"
+Ver=r"b'#Version 3.2.3.1\n'"
 def logo():
     clear()
     colour=random.randint(31,37)
@@ -488,3 +488,4 @@ while d<20:
     #Added 24x7 Running Server
     #Fixed variable Issue
     #Added support for auth_plugin='caching_sha2_password'
+    #Connection Error Notif Added
