@@ -13,7 +13,7 @@ def logo():
                  ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║╚██╔╝██║██╔══██║██║██║          ╚═══██╗   ██╔═══╝     ╚═══██╗
                  ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║██║ ╚═╝ ██║██║  ██║██║███████╗    ██████╔╝██╗███████╗██╗██████╔╝
                  ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝    ╚═════╝ ╚═╝╚══════╝╚═╝╚═════╝
-                                            [Script By: Kanad Nemade | Github: Arduino3128]
+                                        [Script By: Kanad Nemade | Github: Arduino3128]
 \n'''%colour)
     print(" ")
     print(" ")
@@ -118,15 +118,21 @@ else:
     passwdinput=input("Enter Password(Contact Admin For Password): ")
     portinput=input("Enter Port No. of the Server(Contact Admin For Port No.): ")
     hostinput=input("Enter host IP: ")
-    
-dbc = mysql.connector.connect(
-  host=hostinput,
-  user=userinput,
-  passwd=passwdinput,
-  database="metamailuser",
-  port=portinput,
-  auth_plugin='caching_sha2_password'
-)
+def connerr():
+    logo()
+    print("Connection Error! Maybe the Server is down! Try Again Later!")
+    time.sleep(4)
+    exit()
+try:
+    dbc = mysql.connector.connect(
+    host=hostinput,
+    user=userinput,
+    passwd=passwdinput,
+    database="metamailuser",
+    port=portinput,
+    auth_plugin='caching_sha2_password')
+except:
+    connerr()
 c = dbc.cursor()
 clear()
 def meta():
