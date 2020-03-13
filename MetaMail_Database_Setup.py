@@ -42,9 +42,9 @@ except:
     connerr()
 c = dbc.cursor()
 print("Please Wait Setup is Running.....")
-c.execute("CREATE DATABASE User;")
+c.execute("CREATE DATABASE metamailuser;")
 dbc.commit()
-c.execute("USE User;")
+c.execute("USE metamailuser;")
 c.execute("CREATE TABLE User(ID VARCHAR(255) PRIMARY KEY, Password LONGTEXT, ForgotQues LONGTEXT, ForgotPass LONGTEXT);")
 dbc.commit()
 
