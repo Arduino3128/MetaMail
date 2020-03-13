@@ -13,7 +13,11 @@ Now MetaMail Server Runs 24X7!
 Now MetaMail is Available for Windows. Run MetaMail without Python or its libraries Installed!  
 
 Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/releases/latest/ 
-
+  
+## Expected Changes in upcoming versions:  
+  ~Faster Server Speed (WAN)  
+## Issues with current versio:
+  ~Slow Server Speed (WAN)  
 ## Changelogs:  
      #Added Mail Delete functionality  
      #Added Password with SHA-256 Encryption  
