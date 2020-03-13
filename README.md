@@ -16,7 +16,7 @@ Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/releas
   
 ## Expected Changes in upcoming versions:  
   ~Faster Server Speed (WAN)  
-## Issues with current versio:
+## Issues with current version:
   ~Slow Server Speed (WAN)  
 ## Changelogs:  
      #Added Mail Delete functionality  
