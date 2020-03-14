@@ -302,7 +302,7 @@ def meta():
                 print(usr)
             cc=input("To: ")
             ncc="'%s'" %cc
-            nccl=str.lower(ncc)
+            ccl=str.lower(cc)
             if cc=="":
                 mdirect()
             else:pass
@@ -326,7 +326,7 @@ def meta():
             cont=cont.replace('"', '\\"')
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
-            c.execute('insert into %s values("%s","%s","%s","%s")'%(cc, sub, cont,xl,tandd))
+            c.execute('insert into %s values("%s","%s","%s","%s")'%(ccl, sub, cont,xl,tandd))
             print("")
             print("Email Sent")
             print("")
