@@ -439,6 +439,7 @@ def meta():
             meta()
         def delmail():
             u="!@#$%^&*()'"
+            xl=str.lower(x)
             u=input("Enter the subject of Email you wish to delete: ")
             u=u.replace("'", "\\'")
             u=u.replace('"', '\\"')
