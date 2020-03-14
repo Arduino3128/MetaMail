@@ -148,7 +148,7 @@ def meta():
                break
         else:
             print("Username not Found!")
-            time.sleep(5)
+            time.sleep(2)
             meta()
             clear()
         c.execute('Select * from user where ID="%s"'%foruser2)
