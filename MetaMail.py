@@ -177,11 +177,12 @@ def meta():
                     if newpass==cnewpass:
                           c.execute('UPDATE user SET  Password="%s" where ID="%s"' %(nforpass3, foruserl))
                           dbc.commit()
-                          print("You Have Sucessfullly Changed your Password!")
                           tandd=datetime.today()
                           tandd=tandd.strftime("%c")
                           c.execute("insert into %s values('Password Changed','You have changed your Password. If you did not update your account password, please report the issue immediately to \"MetaMailSupport\"', 'MetamailSupport', '%s')"%(foruserlow, tandd))
                           dbc.commit()
+                          print("You Have Sucessfullly Changed your Password!")
+                          meta()
                     else:
                           print("Password didn't Match!")
                           time.sleep(1)
@@ -245,7 +246,7 @@ def meta():
         cnpass=getpass.getpass("Re-enter the Password: ")
         if npass!=cnpass or npass=="":
             print("Password Didn't Match!")
-            ccac()  
+            cacc()  
         forques=input("Enter your Question(This Question will be asked while resetting your password!): ")
         forpass=getpass.getpass("Enter the answer: ")
         def encrypt_string(forpass):
@@ -417,7 +418,7 @@ def meta():
                 for usr in c.fetchall():
                     print(usr)
             em()
-            lo=input("Enter 1 to Refresh Mail Box, 2 to Create Mail, 3 to Delete Mail, 4 to Edit Friends List or 5 to Logout: ")
+            lo=input("Enter 1 to Refresh Mail Box, 2 to Compose Mail, 3 to Delete Mail, 4 to Edit Friends List or 5 to Logout: ")
             if lo=="1":
                 while trep>0:
                     mail()
@@ -439,8 +440,8 @@ def meta():
             print("")
             meta()
         def delmail():
-            u="!@#$%^&*()'"
             xl=str.lower(x)
+            u="!@#$%^&*()'"
             u=input("Enter the subject of Email you wish to delete: ")
             u=u.replace("'", "\\'")
             u=u.replace('"', '\\"')
