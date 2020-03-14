@@ -142,18 +142,21 @@ def meta():
         logo()
         foruser=input("Enter your Username: ")
         foruser2="'%s'"%foruser
-        c.execute("Select * from user")
+        foruserlower=foruser2.lower()
+        c.execute("Select ID from user")
         for j in c.fetchall():
-            if foruser2 in j:
+            if foruser2lower in j:
                break
         else:
             print("Username not Found!")
-            time.sleep(2)
+            time.sleep(5)
             meta()
             clear()
-        c.execute('Select * from user where ID="%s"'%foruser2)
+        print(j)
+        time.sleep(5)
+        c.execute('Select ForgotQues from user where ID="%s"'%foruser2lower)
         for row in c.fetchall():
-              print("Question: ", row[2])
+              print("Question: ")
         forpass=getpass.getpass("Enter Answer: ")
         def encrypt_string(forpass):
             sha_signature2 = \
@@ -161,9 +164,9 @@ def meta():
             return sha_signature2
         sha_signature2 = encrypt_string(forpass)
         nforpass="'%s'"%sha_signature2
-        c.execute('select * from user where ID="%s"'%foruser2)
+        c.execute('select ForgotPass from user where ID="%s"'%foruser2lower)
         for row in c.fetchall():
-              if nforpass==row[3]:
+              if nforpass==row:
                     newpass=getpass.getpass("Enter New Password: ")
                     cnewpass=getpass.getpass("Re-enter the New Pasword: ")
                     def encrypt_string(newpass):
@@ -173,7 +176,7 @@ def meta():
                     sha_signature = encrypt_string(newpass)
                     nforpass3="'%s'"%sha_signature
                     if newpass==cnewpass:
-                          c.execute('UPDATE user SET  Password="%s" where ID="%s"' %(nforpass3, foruser2))
+                          c.execute('UPDATE user SET  Password="%s" where ID="%s"' %(nforpass3, foruser2lower))
                           dbc.commit()
                           print("You Have Sucessfullly Changed your Password!")
                           tandd=datetime.today()
@@ -191,16 +194,18 @@ def meta():
         
     def suser():
         print("Username not available! Try using a different One!")
+        time.sleep(2)
         meta()
     def error():
         print("Unknown Action!")
+        time.sleep(1)
         meta()
     def logout():
         print("Thank You for using MetaMail 3.2.3")
         print("Logging out......")
         time.sleep(1)
-        print("You have Sucessfully Logged out")
         dbc.reset_session()
+        print("You have Sucessfully Logged out")
         time.sleep(2)
         clear()
         logo()
@@ -217,16 +222,22 @@ def meta():
         npass=""
         cpass=""
         nuser=input("Enter your Username: ")
+        nuserl=str.lower(nuser)
         nuser3="'%s'" %nuser
-        nuserl=str.lower(nuser3)
-        nuseru=str.upper(nuser3)
-        c.execute('select * from user')
+        nuser3l=str.lower(nuser3)
+        if nuser=="":
+            print("None of the fields can be left empty!")
+            time.sleep(2)
+            meta()
+        c.execute('select ID from user')
         for i in c.fetchall():
-            if nuser3 in i or nuserl in i or nuseru in i:
+             if nuser3l in i:
                suser()
-            else:
-                pass
         npass=getpass.getpass("Enter your Password: ")
+        if npass=="":
+            print("None of the fields can be left empty!")
+            time.sleep(2)
+            meta()
         def encrypt_string(npass):
             sha_signature = \
                 hashlib.sha256(npass.encode()).hexdigest()
@@ -243,14 +254,11 @@ def meta():
                 hashlib.sha256(forpass.encode()).hexdigest()
             return sha_signature2
         sha_signature2 = encrypt_string(forpass)
-        if nuser=="" or npass=="":
-            error()
-        else:pass
         
         def crmail():
             fuser='f%s'%nuser
             try:
-               c.execute('insert into user values("%s","%s","%s","%s")', (nuser, sha_signature, forques, sha_signature2))
+               c.execute('insert into user values("%s","%s","%s","%s")', (nuserl, sha_signature, forques, sha_signature2))
                c.execute('create table %s(Subject varchar(255), Mail LONGTEXT, SentBy varchar(255), date varchar(255))' %nuser)
                c.execute('create table %s(Friend varchar(100))'%fuser)
             except:
@@ -293,13 +301,14 @@ def meta():
                 print(usr)
             cc=input("To: ")
             ncc="'%s'" %cc
+            nccl=str.lower(ncc)
             if cc=="":
                 mdirect()
             else:pass
             p="0"
-            c.execute("select * from user")
+            c.execute("select ID from user")
             for i in c.fetchall():
-                if ncc==i[0]:
+                if nccl in i:
                     p="1"
                     pass
             if p=="1":
@@ -341,12 +350,13 @@ def meta():
                 adusr=""
                 adusr=input("Enter Username of your Friend: ")
                 adusr2="'%s'" %adusr
+                adusr2l=str.lower(adusr2)
                 if adusr=="":
                     frlist()
                 else:pass
                 c.execute("select * from user")
                 for i in c.fetchall():
-                    if i[0]==adusr2:
+                    if i[0]==adusr2l:
                         t="1"
                 if t=="1":
                     c.execute('insert into %s values("%s")'%(fuser,adusr))
@@ -365,10 +375,11 @@ def meta():
                 ic=6
                 adusr=""
                 adusr=input("Enter Username of your Friend: ")
+                adusrl=str.lower(adusr)
                 if adusr=="":
                     frlist()
                 else:pass
-                c.execute('delete from %s where Friend="%s";'%(fuser,adusr))
+                c.execute('delete from %s where Friend="%s";'%(fuser,adusrl))
                 dbc.commit()
                 while ic==6:
                     frlist()
@@ -447,6 +458,7 @@ def meta():
         print("Welcome to MetaMail Login Page")
         x=input("Enter your Username: ")
         xnew="'%s'" %x
+        xnewl=str.lower(xnew)
         z=getpass.getpass("Enter your Password: ")
         def encrypt_string(z):
             sha_signature = \
@@ -454,11 +466,12 @@ def meta():
             return sha_signature
         sha_signature = encrypt_string(z)
         znew="'%s'" %sha_signature
-        c.execute('SELECT * from user where ID= "%s" ' % xnew)
+        c.execute('SELECT * from user where ID= "%s" ' %xnewl)
         for row in c.fetchall():
             if row[1]==znew:
                 mail()
-            else:error404()
+            else:
+                error404()
         dbc.commit()
     choice=input("Enter 1 to Login, 2 to Create New Account, 3 to Change Password (Forgot Password) or 4 to Exit: ")
     if choice=="1":
