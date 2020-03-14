@@ -302,6 +302,7 @@ def meta():
                 print(usr)
             cc=input("To: ")
             ncc="'%s'" %cc
+            nccl=str.lower(ncc)
             ccl=str.lower(cc)
             if cc=="":
                 mdirect()
