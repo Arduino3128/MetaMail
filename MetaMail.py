@@ -1,6 +1,6 @@
-#Version 3.2.3.1
+#Version 3.2.3.2
 import random
-Ver=r"b'#Version 3.2.3.1\n'"
+Ver=r"b'#Version 3.2.3.2\n'"
 def logo():
     clear()
     colour=random.randint(31,37)
@@ -14,7 +14,7 @@ def logo():
                  ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║██║ ╚═╝ ██║██║  ██║██║███████╗    ██████╔╝██╗███████╗██╗██████╔╝
                  ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝    ╚═════╝ ╚═╝╚══════╝╚═╝╚═════╝
                                         [Script By: Kanad Nemade | Github: Arduino3128]
-\n'''%colour)
+        \n'''%colour)
     print(" ")
     print(" ")
     print("Welcome to MetaMail 3.2.3, Best Off-Grid, Light-Weight and Secure E-mail Service with SHA-256 Encryptions")
@@ -52,7 +52,7 @@ except:
        subprocess.call("cd %s/Scripts && pip install mysql-connector-python requests"%piploc, shell=True)
        subprocess.call("MetaMail.py", shell=True)
    elif osident=="Linux" or osident=="Darwin":
-       subprocess.call("pip install requests mysql-connector-python", shell=True)
+       subprocess.call("pip3 install requests mysql-connector-python", shell=True)
        subprocess.call("python3 MetaMail.py", shell=True)
    else:
        print("Unknown OS, Try Installing 'mysql-connector-python & requests' manually!")
@@ -65,7 +65,7 @@ try:
     r1=requests.get(url, allow_redirects=True)
     r1=str(r1.content)
 except:
-   print("Error Checking Update....Maybe Try Checking your Internet Connection!")
+   print("An Error occured while checking for Updates....Check your Internet Connection!")
    print("Nothing Updated!")
    time.sleep(3)
    clear()
@@ -120,7 +120,7 @@ else:
     hostinput=input("Enter host IP: ")
 def connerr():
     logo()
-    print("Connection Error! Maybe the Server is down! Try Again Later!")
+    print("Server Unreachable! Maybe the Server is down! Try Again Later!")
     time.sleep(4)
     exit()
 try:
@@ -138,23 +138,23 @@ clear()
 def meta():
     logo()
     def cforpass():
-        clear()
+        dbc.reset_session()
         logo()
-        foruser=input("Enter Your Username: ")
+        foruser=input("Enter your Username: ")
         foruser2="'%s'"%foruser
         c.execute("Select * from user")
         for j in c.fetchall():
             if foruser2 in j:
                break
-            else:
-               print("Username not Found!")
-               time.sleep(2)
-               meta()
-               clear()
+        else:
+            print("Username not Found!")
+            time.sleep(5)
+            meta()
+            clear()
         c.execute('Select * from user where ID="%s"'%foruser2)
         for row in c.fetchall():
               print("Question: ", row[2])
-        forpass=getpass.getpass("Enter Answer of the Question: ")
+        forpass=getpass.getpass("Enter Answer: ")
         def encrypt_string(forpass):
             sha_signature2 = \
                 hashlib.sha256(forpass.encode()).hexdigest()
@@ -175,13 +175,13 @@ def meta():
                     if newpass==cnewpass:
                           c.execute('UPDATE user SET  Password="%s" where ID="%s"' %(nforpass3, foruser2))
                           dbc.commit()
-                          print("You Have Sucessfullly Changed Your Password!")
+                          print("You Have Sucessfullly Changed your Password!")
                           tandd=datetime.today()
                           tandd=tandd.strftime("%c")
-                          c.execute("insert into %s values('Password Changed','You have changed Your Password', 'Metamail Support', '%s')"%(foruser, tandd))
+                          c.execute("insert into %s values('Password Changed','You have changed your Password. If you did not update your account password, please report the issue immediately to \"MetaMailSupport\"', 'MetamailSupport', '%s')"%(foruser, tandd))
                           dbc.commit()
                     else:
-                          print("Incorrect Password!")
+                          print("Password didn't Match!")
                           time.sleep(1)
                           meta()
               else:
@@ -199,11 +199,12 @@ def meta():
         print("Thank You for using MetaMail 3.2.3")
         print("Logging out......")
         time.sleep(1)
-        print("Sucessfully Logged out")
+        print("You have Sucessfully Logged out")
+        dbc.reset_session()
         time.sleep(2)
         clear()
         logo()
-        o=input("Enter 1 to Login with Different Account and Press Enter to Exit: ")
+        o=input("Enter 1 to Return to Main Page or Press Enter to Exit: ")
         if o=="1":
             meta()
         else:exit()
@@ -211,11 +212,11 @@ def meta():
     def cacc():
         dbc.reset_session()
         logo()
-        print("Create Your account")
+        print("Create your account")
         nuser=""
         npass=""
         cpass=""
-        nuser=input("Enter Your Username: ")
+        nuser=input("Enter your Username: ")
         nuser3="'%s'" %nuser
         nuserl=str.lower(nuser3)
         nuseru=str.upper(nuser3)
@@ -225,20 +226,23 @@ def meta():
                suser()
             else:
                 pass
-        npass=getpass.getpass("Enter Your Password: ")
+        npass=getpass.getpass("Enter your Password: ")
         def encrypt_string(npass):
             sha_signature = \
                 hashlib.sha256(npass.encode()).hexdigest()
             return sha_signature
         sha_signature = encrypt_string(npass)
-        forques=input("Enter Your Question: ")
-        forpass=getpass.getpass("Enter the answer to the Question: ")
+        cnpass=getpass.getpass("Re-enter the Password: ")
+        if npass!=cnpass or npass=="":
+            print("Password Didn't Match!")
+            ccac()  
+        forques=input("Enter your Question(This Question will be asked while resetting your password!): ")
+        forpass=getpass.getpass("Enter the answer: ")
         def encrypt_string(forpass):
             sha_signature2 = \
                 hashlib.sha256(forpass.encode()).hexdigest()
             return sha_signature2
         sha_signature2 = encrypt_string(forpass)
-        cnpass=getpass.getpass("Re-enter the Password: ")
         if nuser=="" or npass=="":
             error()
         else:pass
@@ -254,14 +258,14 @@ def meta():
                suser()
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
-            c.execute('insert into %s values("Welcome To MetaMail", "Welcome to MetaMail %s", "MetaMail Support","%s")' %(nuser,nuser,tandd))      
+            c.execute('insert into %s values("Welcome To MetaMail", "Welcome to MetaMail %s", "MetaMailSupport","%s")' %(nuser,nuser,tandd))      
             dbc.commit()
             print("Account Created Sucessfully!")
             time.sleep(5)
             login()                       
         if npass==cnpass and npass!="":
             crmail()
-        else:print("Password Didn't Matched!") and cacc()
+        else:print("Password Didn't Match!") and cacc()
 
                 
 
@@ -383,7 +387,7 @@ def meta():
             def em():
                 clear()
                 logo()
-                print("Welcome To Your Inbox")
+                print("Welcome To your Inbox")
                 dbc.reset_session()
                 c.execute("Select * from %s " % x)
                 for row in c.fetchall():
@@ -398,7 +402,7 @@ def meta():
                 for usr in c.fetchall():
                     print(usr)
             em()
-            lo=input("Enter 1 to Refresh Mail Box, 2 to Create Mail, 3 to Delete Mail, 4 to Edit Friends List and 5 to Logout: ")
+            lo=input("Enter 1 to Refresh Mail Box, 2 to Create Mail, 3 to Delete Mail, 4 to Edit Friends List or 5 to Logout: ")
             if lo=="1":
                 while trep>0:
                     mail()
@@ -416,6 +420,7 @@ def meta():
         def error404():
             print("")
             print("Error 404! Account not found")
+            time.sleep(2)
             print("")
             meta()
         def delmail():
@@ -429,7 +434,7 @@ def meta():
             c.execute('delete from %s where Subject="%s" AND date="%s";' %(x,u,dat))
             dbc.commit()
             print("")
-            print("Email with subject <%s> has been deleted sucessfully and date <%s>" %(u,dat))
+            print("Email with subject <%s> and date <%s> has been deleted sucessfully " %(u,dat))
             print("")
             time.sleep(1)
             mail()
@@ -442,7 +447,7 @@ def meta():
         print("Welcome to MetaMail Login Page")
         x=input("Enter your Username: ")
         xnew="'%s'" %x
-        z=getpass.getpass("Enter Your Password: ")
+        z=getpass.getpass("Enter your Password: ")
         def encrypt_string(z):
             sha_signature = \
                 hashlib.sha256(z.encode()).hexdigest()
@@ -489,3 +494,4 @@ while d<20:
     #Fixed variable Issue
     #Added support for auth_plugin='caching_sha2_password'
     #Connection Error Notif Added
+    #Fixed Major "Change Password" Bug
