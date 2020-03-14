@@ -2,7 +2,10 @@
 Off-Grid E-Mail Service with SHA-256 Password Encryptions.
   
 ## What's New? 
-
+  
+### ~Release(3.2.3.2)  
+Fixed Major Bug in "Change Password" Section  
+  
 ### ~Release(3.2.3.1)  
 Fixed Minor Bugs  
   
@@ -36,3 +39,4 @@ Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/releas
      #Fixed variable Issue
      #Added support for auth_plugin='caching_sha2_password'  
      #Connection Error Notif Added  
+     #Fixed Major "Change Password" Bug  
