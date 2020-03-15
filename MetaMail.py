@@ -477,6 +477,9 @@ def meta():
         sha_signature = encrypt_string(z)
         znew="'%s'" %sha_signature
         c.execute('SELECT * from user where ID= "%s" ' %xnewl)
+        if c.fetchall()==[]:
+        	error404()
+        c.execute('SELECT * from user where ID= "%s" ' %xnewl)
         for row in c.fetchall():
             if row[1]==znew:
                 mail()
