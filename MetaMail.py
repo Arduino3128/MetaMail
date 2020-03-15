@@ -190,6 +190,7 @@ def meta():
                           c.execute("insert into %s values('Password Changed','You have changed your Password. If you did not update your account password, please report the issue immediately to \"MetaMailSupport\"', 'MetamailSupport', '%s')"%(foruserlow, tandd))
                           dbc.commit()
                           print("You Have Sucessfullly Changed your Password!")
+                          time.sleep(2)
                           meta()
                     else:
                           print("Password didn't Match!")
