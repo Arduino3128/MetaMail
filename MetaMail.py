@@ -1,6 +1,6 @@
-#Version 3.2.3.2
+#Version 3.2.3.3
 import random
-Ver=r"b'#Version 3.2.3.2\n'"
+Ver=r"b'#Version 3.2.3.3\n'"
 def logo():
     clear()
     colour=random.randint(31,37)
@@ -64,41 +64,48 @@ try:
     url=geturl1
     r1=requests.get(url, allow_redirects=True)
     r1=str(r1.content)
+    checkup="Sucess"
 except:
    print("An Error occured while checking for Updates....Check your Internet Connection!")
    print("Nothing Updated!")
+   checkup="Error"
    time.sleep(3)
    clear()
 ####################
-logo()
-if Ver<r1:
-   print("New Update Available!")
-   print("Please Consider Updating MetaMail")
-   conf=input("Do you want to Update MetaMail Now? Yes/Y/N/No: ")
-   confu=conf.lower()
-   def GetUp():
-       os.mkdir(pathUp)
-       try:
-           geturl1="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail.py"
-           r=requests.get(geturl1, allow_redirects=True)
-           open("MetaMailNew.py",'wb').write(r.content)
-           print("MetaMail.py Downloaded Sucessfully.")
-       except:
-           print("Failed To Update! You are using Older Version!")
-       shutil.move(getdir+"/MetaMailNew.py", pathUp+"/MetaMail.py")
-       print("MetaMail.py Updated Sucessfully, Newer Vesion is moved to 'MetaMail Updated' Folder.")
-       print("Exiting....")
-       time.sleep(2)
-       exit(None)
-   if confu=="y" or confu=="yes":
-       GetUp()
-   time.sleep(4)
-   clear()
+def update():
+    logo()
+    if r1>Ver:
+       print("New Update Available!")
+       print("Please Consider Updating MetaMail")
+       conf=input("Do you want to Update MetaMail Now? Yes/Y/N/No: ")
+       confu=conf.lower()
+       def GetUp():
+           os.mkdir(pathUp)
+           try:
+               geturl1="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail.py"
+               r=requests.get(geturl1, allow_redirects=True)
+               open("MetaMailNew.py",'wb').write(r.content)
+               print("MetaMail.py Downloaded Sucessfully.")
+               shutil.move(getdir+"/MetaMailNew.py", pathUp+"/MetaMail.py")
+               print("MetaMail.py Updated Sucessfully, Newer Vesion is moved to 'MetaMail Updated' Folder.")
+               print("Exiting....")
+               time.sleep(2)
+               exit(None)
+           except:
+               print("Failed To Update! You are using Older Version!")
+       if confu=="y" or confu=="yes":
+           GetUp()
+       time.sleep(4)
+       clear()
+    else:
+       print("You're running Latest Version!")
+       time.sleep(1)
+       clear()
+if checkup=="Sucess":
+    update()
 else:
-   print("You're running Latest Version!")
-   time.sleep(1)
-   clear()
-
+    print("You are maybe using older version!")
+    time.sleep(2)
 select=0
 logo()   
 select=input("Enter 1 for LAN(localhost) or 2 for WAN(Internet) or Press Just 'Enter' to Customize Connection: ")
