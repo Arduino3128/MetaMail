@@ -3,6 +3,9 @@ Off-Grid E-Mail Service with SHA-256 Password Encryptions.
   
 ## What's New? 
   
+### ~Release(3.2.3.3)  
+Faster Server Now Available!  
+
 ### ~Release(3.2.3.2)  
 Fixed Major Bug in "Change Password" Section  
   
@@ -16,11 +19,7 @@ Now MetaMail Server Runs 24X7!
 Now MetaMail is Available for Windows. Run MetaMail without Python or its libraries Installed!  
 
 Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/releases/latest/ 
-  
-## Expected Changes in upcoming versions:  
-  ~Faster Server Speed (WAN)  
-## Issues with current version:
-  ~Slow Server Speed (WAN)  
+    
 ## Changelogs:  
      #Added Mail Delete functionality  
      #Added Password with SHA-256 Encryption  
@@ -39,4 +38,5 @@ Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/releas
      #Fixed variable Issue
      #Added support for auth_plugin='caching_sha2_password'  
      #Connection Error Notif Added  
-     #Fixed Major "Change Password" Bug  
+     #Fixed Major "Change Password" Bug 
+     #Fixed Update Error
