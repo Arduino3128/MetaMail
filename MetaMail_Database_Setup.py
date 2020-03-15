@@ -47,7 +47,7 @@ dbc.commit()
 c.execute("USE metamailuser;")
 c.execute("CREATE TABLE user(ID VARCHAR(255) PRIMARY KEY, Password LONGTEXT, ForgotQues LONGTEXT, ForgotPass LONGTEXT);")
 dbc.commit()
-c.execute("insert into user values("user","None","  ","None")")
+c.execute("insert into user values("user","None","Not Applicable","None")")
 dbc.commit()
 
 print("")
