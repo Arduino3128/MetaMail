@@ -140,6 +140,7 @@ def meta():
     def cforpass():
         dbc.reset_session()
         logo()
+        print("Reset Password")
         foruser=input("Enter your Username: ")
         foruserlow=str.lower(foruser)
         foruser2="'%s'"%foruser
@@ -213,7 +214,10 @@ def meta():
         if o=="1":
             meta()
         else:exit()
-
+    def invalidchar():
+        print("Invalid Charcters Used!")
+        time.sleep(2)
+        meta()
     def cacc():
         dbc.reset_session()
         logo()
@@ -222,11 +226,14 @@ def meta():
         npass=""
         cpass=""
         nuser=input("Enter your Username: ")
+        check=nuser.isalnum()
+        if check==False:
+            invalidchar()
         nuserl=str.lower(nuser)
         nuser3="'%s'" %nuser
         nuser3l=str.lower(nuser3)
         if nuser=="":
-            print("None of the fields can be left empty!")
+            print("This Field can't be left empty!")
             time.sleep(2)
             meta()
         c.execute('select ID from user')
@@ -235,7 +242,7 @@ def meta():
                suser()
         npass=getpass.getpass("Enter your Password: ")
         if npass=="":
-            print("None of the fields can be left empty!")
+            print("This Field can't be left empty!")
             time.sleep(2)
             meta()
         def encrypt_string(npass):
@@ -248,7 +255,17 @@ def meta():
             print("Password Didn't Match!")
             cacc()  
         forques=input("Enter your Question(This Question will be asked while resetting your password!): ")
+        if forques=="":
+            print("This Field can't be left empty!")
+            time.sleep(2)
+            meta()
+        forques=forques.replace("'", "\\'")
+        forques=forques.replace('"', '\\"')
         forpass=getpass.getpass("Enter the answer: ")
+        if forpass=="":
+            print("This Field can't be left empty!")
+            time.sleep(2)
+            meta()
         def encrypt_string(forpass):
             sha_signature2 = \
                 hashlib.sha256(forpass.encode()).hexdigest()
@@ -258,12 +275,12 @@ def meta():
         def crmail():
             fuser='f%s'%nuserl
             try:
-               c.execute('insert into user values("%s","%s","%s","%s")', (nuserl, sha_signature, forques, sha_signature2))
-               c.execute('create table %s(Subject varchar(255), Mail LONGTEXT, SentBy varchar(255), date varchar(255))' %nuserl)
-               c.execute('create table %s(Friend varchar(100))'%fuser)
+                c.execute('insert into user values("%s","%s","%s","%s")', (nuserl, sha_signature, forques, sha_signature2))
+                c.execute('create table %s(Subject varchar(255), Mail LONGTEXT, SentBy varchar(255), date varchar(255))' %nuserl)
+                c.execute('create table %s(Friend varchar(100))'%fuser)
             except:
-               print("Unknown Error! Maybe another user exists with same username!")
-               suser()
+                print("Unknown Error! Maybe another user exists with same username!")
+                suser()
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
             c.execute('insert into %s values("Welcome To MetaMail", "Welcome to MetaMail %s", "MetaMailSupport","%s")' %(nuserl,nuser,tandd))      
@@ -281,7 +298,7 @@ def meta():
         logo()
         def mdirect():
             print("Unknown Error! Returning To Mail Box!")
-            print("")
+            time.sleep(2)
             mail()
             
         def uerror():
@@ -337,7 +354,7 @@ def meta():
             mail()
         def frlist():
             logo()
-            print("Welcome to MetaFriends list ")
+            print("Welcome to MetaFriends list")
             xl=str.lower(x)
             fuser='f%s'%xl
             usr=None
@@ -353,6 +370,8 @@ def meta():
                 t="0"
                 adusr=""
                 adusr=input("Enter Username of your Friend: ")
+                adusr=adusr.replace("'", "\\'")
+                adusr=adusr.replace('"', '\\"')
                 adusr2="'%s'" %adusr
                 adusr2l=str.lower(adusr2)
                 if adusr=="":
@@ -379,6 +398,8 @@ def meta():
                 ic=6
                 adusr=""
                 adusr=input("Enter Username of your Friend: ")
+                adusr=adusr.replace("'", "\\'")
+                adusr=adusr.replace('"', '\\"')
                 adusrl=str.lower(adusr)
                 if adusr=="":
                     frlist()
@@ -402,7 +423,7 @@ def meta():
             def em():
                 clear()
                 logo()
-                print("Welcome To your Inbox")
+                print("Inbox")
                 xl=str.lower(x)
                 dbc.reset_session()
                 c.execute("Select * from %s " % xl)
@@ -467,6 +488,8 @@ def meta():
             print("This field can't be left Empty!")
             time.sleep(2)
             meta()
+        x=x.replace("'", "\\'")
+        x=x.replace('"', '\\"')
         xnew="'%s'" %x
         xnewl=str.lower(xnew)
         z=getpass.getpass("Enter your Password: ")
