@@ -1,10 +1,31 @@
 import time
+import random
 import subprocess
 import platform
+def logo():
+    clear()
+    colour=random.randint(31,37)
+    print('''\033[1;%s;40m
+
+
+                 ███╗   ███╗███████╗████████╗ █████╗ ███╗   ███╗ █████╗ ██╗██╗         ██████╗    ██████╗    ██████╗ 
+                 ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗████╗ ████║██╔══██╗██║██║         ╚════██╗   ╚════██╗   ╚════██╗
+                 ██╔████╔██║█████╗     ██║   ███████║██╔████╔██║███████║██║██║          █████╔╝    █████╔╝    █████╔╝
+                 ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║╚██╔╝██║██╔══██║██║██║          ╚═══██╗   ██╔═══╝     ╚═══██╗
+                 ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║██║ ╚═╝ ██║██║  ██║██║███████╗    ██████╔╝██╗███████╗██╗██████╔╝
+                 ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝    ╚═════╝ ╚═╝╚══════╝╚═╝╚═════╝
+                                        [Script By: Kanad Nemade | Github: Arduino3128]
+        \n'''%colour)
+    print(" ")
+    print(" ")
+    print("Welcome to MetaMail 3.2.3, Best Off-Grid, Light-Weight and Secure E-mail Service with SHA-256 Encryptions")
+    print("")
+    print("")
 osident=platform.system()
 try:
    import mysql.connector
 except:
+   logo()
    print("MySQL Connector not found! Starting 'mysql-connector-python' Module installing Procedure!")
    if osident=="Windows":
        piploc=input("Enter the directory path of Python: ")
@@ -17,6 +38,7 @@ except:
        print("Unknown OS, Try Installing 'mysql-connector-python' manually!")
    exit()
    time.sleep(5)
+logo()
 print(" ")
 print("Welcome to MetaMail Database Setup!")
 print("")
@@ -41,6 +63,7 @@ try:
 except:
     connerr()
 c = dbc.cursor()
+logo()
 print("Please Wait Setup is Running.....")
 c.execute("CREATE DATABASE metamailuser;")
 dbc.commit()
@@ -49,7 +72,6 @@ c.execute("CREATE TABLE user(ID VARCHAR(255) PRIMARY KEY, Password LONGTEXT, For
 dbc.commit()
 c.execute("insert into user values("user","None","Not Applicable","None")")
 dbc.commit()
-
 print("")
 print("Setup Finished Sucessfully!")
 print("Exiting......")
