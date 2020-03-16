@@ -1,7 +1,17 @@
 import time
+import os
 import random
 import subprocess
 import platform
+osident=platform.system()
+if "Windows" in osident:
+    clear=lambda:os.system("cls")
+elif "Linux" in osident:
+    clear=lambda:os.system("clear")
+elif "Darwin" in osident:
+    clear=lambda:os.system("clear")
+else:
+    print("Unknown O.S. Using Default 'Windows Configuration'")
 def logo():
     clear()
     colour=random.randint(31,37)
@@ -21,7 +31,6 @@ def logo():
     print("Welcome to MetaMail 3.2.3, Best Off-Grid, Light-Weight and Secure E-mail Service with SHA-256 Encryptions")
     print("")
     print("")
-osident=platform.system()
 try:
    import mysql.connector
 except:
@@ -70,7 +79,7 @@ dbc.commit()
 c.execute("USE metamailuser;")
 c.execute("CREATE TABLE user(ID VARCHAR(255) PRIMARY KEY, Password LONGTEXT, ForgotQues LONGTEXT, ForgotPass LONGTEXT);")
 dbc.commit()
-c.execute("insert into user values("user","None","Not Applicable","None")")
+c.execute('insert into user values("user","None","Not Applicable","None")')
 dbc.commit()
 print("")
 print("Setup Finished Sucessfully!")
