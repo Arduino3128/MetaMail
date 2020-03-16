@@ -28,7 +28,7 @@ hostinput=input("Enter host IP ")
    
 def connerr():
     logo()
-    print("Connection Error! Maybe the Server is down! Try Again Later!")
+    print("Server Unreachable! Maybe the Server is down! Try Again Later!")
     time.sleep(4)
     exit()
 try:
