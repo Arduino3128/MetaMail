@@ -1,7 +1,34 @@
 import time
+import os
+import random
 import subprocess
 import platform
 osident=platform.system()
+if "Windows" in osident:
+    clear=lambda:os.system("cls")
+elif "Linux" in osident:
+    clear=lambda:os.system("clear")
+elif "Darwin" in osident:
+    clear=lambda:os.system("clear")
+else:
+    print("Unknown O.S. Using Default 'Windows Configuration'")
+def logo():
+    clear()
+    colour=random.randint(31,37)
+    print('''\033[1;%s;40m
+                 ███╗   ███╗███████╗████████╗ █████╗ ███╗   ███╗ █████╗ ██╗██╗         ██████╗    ██████╗    ██████╗ 
+                 ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗████╗ ████║██╔══██╗██║██║         ╚════██╗   ╚════██╗   ╚════██╗
+                 ██╔████╔██║█████╗     ██║   ███████║██╔████╔██║███████║██║██║          █████╔╝    █████╔╝    █████╔╝
+                 ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║╚██╔╝██║██╔══██║██║██║          ╚═══██╗   ██╔═══╝     ╚═══██╗
+                 ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║██║ ╚═╝ ██║██║  ██║██║███████╗    ██████╔╝██╗███████╗██╗██████╔╝
+                 ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝    ╚═════╝ ╚═╝╚══════╝╚═╝╚═════╝
+                                        [Script By: Kanad Nemade | Github: Arduino3128]
+        \n'''%colour)
+    print(" ")
+    print(" ")
+    print("Welcome to MetaMail 3.2.3, Best Off-Grid, Light-Weight and Secure E-mail Service with SHA-256 Encryptions")
+    print("")
+    print("")
 try:
    import mysql.connector
    import requests
@@ -18,6 +45,7 @@ except:
        print("Unknown OS, Try Installing 'mysql-connector-python & requests' manually!")
    exit()
    time.sleep(5)
+logo()
 print("Welcome to MetaMail AutoFetch Installer")
 
 print("""
@@ -76,6 +104,7 @@ def End():
     time.sleep(5)
     exit()
 Agreement=input("Do You Agree this EULA? Yes/No/y/n: ")
+logo()
 print("Welcome to MetaMail AutoFetch Installer")
 def GetAdv():
     try:
