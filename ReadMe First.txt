@@ -16,4 +16,6 @@ To Update MetaMail.py:
   
 If you face any difficulty or want to report an issue or a bug:  
 1. Write Mail to "MetaMailSupport" on MetaMail. 
-2. Open issue on GitHub.  
+2. Open issue on GitHub. 
+
+Contact through Gmail at "MetaMai.Inc@gmail.com" if you need a separate Database!
