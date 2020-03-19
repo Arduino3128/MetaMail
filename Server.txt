@@ -2,4 +2,4 @@ Server=www.db4free.net
 Key=aabbcczz
 Uname=MetaMail
 Port=3306
-Dname=metamailuserwww
+Dname=metamailuser
