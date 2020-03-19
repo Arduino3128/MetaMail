@@ -1,6 +1,6 @@
-#Version 3.2.3.3
+#Version 3.2.3.4
 import random
-Ver=r"b'#Version 3.2.3.3\n'"
+Ver=r"b'#Version 3.2.3.4\n'"
 def logo():
     clear()
     colour=random.randint(31,37)
@@ -58,6 +58,21 @@ except:
        print("Unknown OS, Try Installing 'mysql-connector-python & requests' manually!")
    exit()
    time.sleep(5)
+#####################
+s1=""
+s2=""
+try:
+    geturls="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/Server.txt"
+    urls=geturls
+    s1=requests.get(urls, allow_redirects=True)
+    s1=str(s1.content)
+    checkup2="Sucess"
+except:
+   print("An Error occured while checking for Server Uplink...Check your Internet Connection!")
+   checkup2="Error"
+s2=s1.replace("b'",'')
+s2=s2.replace("'","")
+s3=s2.split(r"\n")
 ####################
 try:
     geturl1="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/Version.txt"
@@ -114,17 +129,20 @@ if select=="1":
     passwdinput=input("Enter Password(Contact Admin For Password): ")
     portinput=input("Enter Port No. of the Server(Contact Admin For Port No.): ")
     hostinput="localhost"
+    dbinputinput=("Enter Database ID of the Server(Contact Admin For Port No.): ")
 elif select=="2":
-    userinput="metamail"
-    passwdinput="aabbcczz"
-    portinput="3306"
-    hostinput="www.db4free.net"
+    userinput=s3[2]
+    passwdinput=s3[1]
+    portinput=s3[3]
+    hostinput=s3[0]
+    dbinput=s3[4]
 
 else:
     userinput=input("Enter Username(Contact Admin For Username): ")
     passwdinput=input("Enter Password(Contact Admin For Password): ")
     portinput=input("Enter Port No. of the Server(Contact Admin For Port No.): ")
     hostinput=input("Enter host IP: ")
+    dbinputinput=("Enter Database ID of the Server(Contact Admin For Port No.): ")
 def connerr():
     logo()
     print("Server Unreachable! Maybe the Server is down! Try Again Later!")
@@ -135,7 +153,7 @@ try:
     host=hostinput,
     user=userinput,
     passwd=passwdinput,
-    database="metamailuser",
+    database=dbinput,
     port=portinput,
     auth_plugin='caching_sha2_password')
 except:
@@ -552,3 +570,4 @@ while d<20:
     #Added support for auth_plugin='caching_sha2_password'
     #Connection Error Notif Added
     #Fixed Major "Change Password" Bug
+    #Server Uplink 
