@@ -3,6 +3,10 @@ Off-Grid E-Mail Service with SHA-256 Password Encryptions.
   
 ## What's New? 
   
+### ~Release(3.2.3.5)  
+Added File Attachment Option  
+Fixed Variable Bugs  
+  
 ### ~Release(3.2.3.4)  
 Server Uplink  
 Fixed Minor Bugs    
