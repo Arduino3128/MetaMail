@@ -53,4 +53,6 @@ Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/releas
      #Connection Error Notif Added  
      #Fixed Major "Change Password" Bug 
      #Fixed Update Error
-     #Server Uplink 
+     #Server Uplink   
+     #Added File Attachment Option  
+     #Fixed Variable Issue  
