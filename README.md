@@ -1,6 +1,6 @@
 # MetaMail
 Off-Grid E-Mail Service with SHA-256 Password Encryptions.
-  
+ 
 ## What's New? 
   
 ### ~Release(3.2.3.5)  
@@ -26,8 +26,7 @@ Now MetaMail Server Runs 24X7!
 ### ~Release(3.2.2.9)  
 Now MetaMail is Available for Windows. Run MetaMail without Python or its libraries Installed!  
 
-Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/releases/latest/ 
-    
+Link to MetaMail Windows Version: [MetaMail Latest](https://github.com/Arduino3128/MetaMail/releases/latest/)   
   
 ## Issues with 3.2.3.5 release:  
 1)No support for Text File(.txt).  
