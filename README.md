@@ -1,6 +1,8 @@
-# MetaMail
+# MetaMail  
 Off-Grid E-Mail Service with SHA-256 Password Encryptions.
- 
+   
+![image](https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail%20Logo.png)
+   
 ## What's New? 
   
 ### ~Release(3.2.3.5)  
