@@ -30,7 +30,7 @@ Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/releas
     
   
 ## Issues with 3.2.3.5 release:  
-1)No support for Text File(.TXT).  
+1)No support for Text File(.txt).  
 
   
 ## Changelogs:  
