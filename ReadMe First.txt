@@ -11,11 +11,13 @@ T̶o̶ ̶U̶p̶d̶a̶t̶e̶ ̶M̶e̶t̶a̶M̶a̶i̶l̶.̶p̶y̶:̶
 
 MetaMail Updater is no longer supported by the Developer!  
 
-To Update MetaMail.py:
-1. Simply Run MetaMail.py!  
+To Update MetaMail:
+1. Simply Run MetaMail file!  
+
   
 How to add an Attachment?:  
 ***Currently MetaMail 3.2.3.5 supports Attachment of any files of size less than 1 MB and file except Text Files (.txt).***  
+  
 1)Go to "Compose" and follow regular procedure.  
 2)At the end an option will prompt asking whether you want to add an Attachment or not.  
 3)Enter "Yes" or "y" to add attachment.  
