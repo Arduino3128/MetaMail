@@ -1,6 +1,6 @@
-#Version 3.2.3.4
+#Version 3.2.3.5
 import random
-Ver=r"b'#Version 3.2.3.4\n'"
+Ver=r"b'#Version 3.2.3.5\n'"
 def logo():
     clear()
     colour=random.randint(31,37)
@@ -129,7 +129,7 @@ if select=="1":
     passwdinput=input("Enter Password(Contact Admin For Password): ")
     portinput=input("Enter Port No. of the Server(Contact Admin For Port No.): ")
     hostinput="localhost"
-    dbinputinput=("Enter Database ID of the Server(Contact Admin For Port No.): ")
+    dbinput=input("Enter Database Name of the Server(Contact Admin For Database name): ")
 elif select=="2":
     userinput=s3[2]
     passwdinput=s3[1]
@@ -142,7 +142,7 @@ else:
     passwdinput=input("Enter Password(Contact Admin For Password): ")
     portinput=input("Enter Port No. of the Server(Contact Admin For Port No.): ")
     hostinput=input("Enter host IP: ")
-    dbinputinput=("Enter Database ID of the Server(Contact Admin For Port No.): ")
+    dbinput=input("Enter Database Name of the Server(Contact Admin For Database name): ")
 def connerr():
     logo()
     print("Server Unreachable! Maybe the Server is down! Try Again Later!")
@@ -302,14 +302,14 @@ def meta():
             fuser='f%s'%nuserl
             try:
                 c.execute('insert into user values("%s","%s","%s","%s")', (nuserl, sha_signature, forques, sha_signature2))
-                c.execute('create table %s(Subject varchar(255), Mail LONGTEXT, SentBy varchar(255), date varchar(255))' %nuserl)
+                c.execute('create table %s(Subject varchar(255), Mail LONGTEXT, SentBy varchar(255), date varchar(255), Attachment LONGBLOB, AttachFormat varchar(255))' %nuserl)
                 c.execute('create table %s(Friend varchar(100))'%fuser)
             except:
                 print("Unknown Error! Maybe another user exists with same username!")
                 suser()
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
-            c.execute('insert into %s values("Welcome To MetaMail", "Welcome to MetaMail %s", "MetaMailSupport","%s")' %(nuserl,nuser,tandd))      
+            c.execute('insert into %s values("Welcome To MetaMail", "Welcome to MetaMail %s", "MetaMailSupport","%s","","")' %(nuserl,nuser,tandd))      
             dbc.commit()
             print("Account Created Sucessfully!")
             time.sleep(5)
@@ -369,13 +369,39 @@ def meta():
             cont=input("Content: ")
             cont=cont.replace("'", "\\'")
             cont=cont.replace('"', '\\"')
+            attachmnt=input("Attachment? Yes/No: ")
+            attachmnt=attachmnt.lower()
+            file=""
+            filename="None"
+            try:
+                def fileconv(filename):
+                    with open(filename, 'rb') as f:
+                        fileblob = f.read()
+                    return fileblob
+                    print("File Uploaded Sucessfully!")
+                if attachmnt=="yes" or attachmnt=="y":
+                    filename=input("Enter Filename: ")
+                    file_stats = os.stat(filename)
+                    file_stats=(file_stats.st_size/1024/1024)
+                    if file_stats>1.0:
+                        print("You cannot upload a file with size Greater Than 1 MB!")
+                        time.sleep(4)
+                        mail()
+                    else:
+                        file=fileconv(filename)
+            except:
+                    print("Probably File doesn't Exist!")
+                    time.sleep(2)
+                    cmail()
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
-            c.execute('insert into %s values("%s","%s","%s","%s")'%(ccl, sub, cont,xl,tandd))
+            sql_query="""insert into """+ccl+""" (Subject,Mail,SentBy,date,Attachment,AttachFormat) values(%s,%s,%s,%s,%s,%s)"""
+            data_store=(sub,cont,xl,tandd,file,filename)
+            result=c.execute(sql_query,data_store)
+            dbc.commit()
             print("")
             print("Email Sent")
             print("")
-            dbc.commit()
             time.sleep(1)
             mail()
         def frlist():
@@ -449,13 +475,17 @@ def meta():
             def em():
                 clear()
                 logo()
+                global xl
                 print("Inbox")
                 xl=str.lower(x)
                 dbc.reset_session()
-                c.execute("Select * from %s " % xl)
+                c.execute("Select Subject,Mail,SentBy,date from %s " % xl)
                 for row in c.fetchall():
+                    controw=row[1]
+                    if len(controw)>50:
+                        controw=controw[0:50]+"...."
                     print(" ")
-                    print("Subject:",row[0],"|","Content:",row[1],"|","From:",row[2],"|","On:",row[3])
+                    print("Subject:",row[0],"|","Content:",controw,"|","From:",row[2],"|","On:",row[3])
                     print(" ")
                 print("Your Friends List")
                 
@@ -465,17 +495,74 @@ def meta():
                 for usr in c.fetchall():
                     print(usr)
             em()
-            lo=input("Enter 1 to Refresh Mail Box, 2 to Compose Mail, 3 to Delete Mail, 4 to Edit Friends List or 5 to Logout: ")
+            lo=input("Enter 1 to Refresh Mail Box, 2 to Read Mail, 3 to Compose Mail, 4 to Delete Mail, 5 to Edit Friends List or 6 to Logout: ")
+            def rmail():
+                logo()
+                print("Read Mail")
+                def retmailconf():
+                    retconf=input("Return to Inbox? Yes/No: ")
+                    retconf=retconf.lower()
+                    if retconf=="yes" or retconf=="y":
+                        mail()
+                    else:
+                        retmailconf()
+                c.execute('select Subject,Mail,SentBy,Attachment,AttachFormat from %s where date="%s" and Subject="%s"'%(xl,rdate,rsubj))
+                for dat in c.fetchall():
+                    subjectdat=dat[0]
+                    maildata=dat[1]
+                    sentbydata=dat[2]
+                    attachment=dat[3]
+                    filename=dat[4]
+                try:
+                    print("Subject: ",subjectdat)
+                    print("Content: ",maildata)
+                    print("Sent by: ",sentbydata)
+                except:
+                    print("Mail not found with <%s> subject and <%s> date! Maybe there is an extra 'Space' in between!"%(rsubj,rdate))
+                    time.sleep(5)
+                    mail()
+                if filename!="None":
+                    conf=input("Do you want to download the Attachment? Yes/No: ")
+                    conf=conf.lower()
+                    if conf=="yes" or conf=="y":
+                        try:
+                            def convblob(attachment):
+                                with open(filename,"wb") as f:
+                                    f.write(attachment)
+                            convblob(attachment)
+                            print("Attachment Downloaded Sucessfully in the MetaMail folder")
+                            time.sleep(1)
+                            downloaded=1
+                        except:
+                            print("Unknown Error Occured! Error While Downloading the attachment!")
+                            retmailconf()
+                            downloaded=2
+                        if downloaded==1:
+                            retmailconf()
+                    else:
+                        retmailconf()
+                else:
+                    print("No Attachment Found!")
+                    retmailconf()
             if lo=="1":
                 while trep>0:
                     mail()
-            elif lo=="3":
+            elif lo=="4":
                 delmail()
-            elif lo=="5":
+            elif lo=="6":
                 logout()
             elif lo=="2":
+                rsubj=input("Enter the Subject of the Mail: ")
+                rdate=input("Enter the Date and Time of the Mail: ")
+                if rdate=="":
+                    print("Unknown date!")
+                    time.sleep(2)
+                    mail()
+                else:
+                    rmail()
+            elif lo=="3":
                 cmail()
-            elif lo=="4":
+            elif lo=="5":
                 frlist()
             elif lo=="":mail()
             else:em()
@@ -570,4 +657,6 @@ while d<20:
     #Added support for auth_plugin='caching_sha2_password'
     #Connection Error Notif Added
     #Fixed Major "Change Password" Bug
-    #Server Uplink 
+    #Server Uplink
+    #Added File Attachment Option
+    #Fixed Variable Issue
