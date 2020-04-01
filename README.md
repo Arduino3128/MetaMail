@@ -28,6 +28,11 @@ Now MetaMail is Available for Windows. Run MetaMail without Python or its librar
 
 Link to MetaMail Windows Version: https://github.com/Arduino3128/MetaMail/releases/latest/ 
     
+  
+## Issues with 3.2.3.5 release:  
+1)No support for Text File(.TXT).  
+
+  
 ## Changelogs:  
      #Added Mail Delete functionality  
      #Added Password with SHA-256 Encryption  
