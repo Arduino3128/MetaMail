@@ -1,6 +1,6 @@
-#Version 3.2.3.6
+#Version 3.2.3.5
 import random
-Ver=r"b'#Version 3.2.3.6\n'"
+Ver=r"b'#Version 3.2.3.5\n'"
 def logo():
     clear()
     colour=random.randint(31,37)
