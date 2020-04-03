@@ -1,6 +1,6 @@
-#Version 3.2.3.5
+#Version 3.2.3.6
 import random
-Ver=r"b'#Version 3.2.3.5\n'"
+Ver=r"b'#Version 3.2.3.6\n'"
 def logo():
     clear()
     colour=random.randint(31,37)
@@ -23,15 +23,12 @@ def logo():
 from datetime import datetime
 import time
 import os
-import shutil
 import platform
 import hashlib
 import re
 import subprocess
 getdir=os.getcwd()
-path="/MetaMail Updated"
 r1="None"
-pathUp=getdir+path
 osident=platform.system()
 if "Windows" in osident:
     clear=lambda:os.system("cls")
@@ -95,16 +92,18 @@ def update():
        conf=input("Do you want to Update MetaMail Now? Yes/Y/N/No: ")
        confu=conf.lower()
        def GetUp():
-           os.mkdir(pathUp)
            try:
                geturl1="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail.py"
                r=requests.get(geturl1, allow_redirects=True)
-               open("MetaMailNew.py",'wb').write(r.content)
+               open("MetaMail.py",'wb').write(r.content)
                print("MetaMail.py Downloaded Sucessfully.")
-               shutil.move(getdir+"/MetaMailNew.py", pathUp+"/MetaMail.py")
-               print("MetaMail.py Updated Sucessfully, Newer Vesion is moved to 'MetaMail Updated' Folder.")
-               print("Exiting....")
+               print("Updating....")
+               print("MetaMail Updated Sucessfully!")
                time.sleep(2)
+               if osident=="Darwin" or osident=="Linux":
+                   subprocess.call("python3 MetaMail.py", shell=True)
+               else:
+                   subprocess.call("MetaMail.py", shell=True)
                exit(None)
            except:
                print("Failed To Update! You are using Older Version!")
@@ -660,3 +659,4 @@ while d<20:
     #Server Uplink
     #Added File Attachment Option
     #Fixed Variable Issue
+    #Fixed Inbuilt Updater
