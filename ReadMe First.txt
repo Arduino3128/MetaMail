@@ -16,7 +16,7 @@ To Update MetaMail:
 
   
 How to add an Attachment?:  
-***Currently MetaMail 3.2.3.5 supports Attachment of any files of size less than 1 MB and file except Text Files (.txt).***  
+***Currently MetaMail 3.2.3.5 supports Attachment of any file of size less than 1 MB and file except Text Files (.txt).***  
   
 1)Go to "Compose" and follow regular procedure.  
 2)At the end an option will prompt asking whether you want to add an Attachment or not.  
@@ -30,6 +30,9 @@ How do I Download attached file?:
 3)Enter "Yes" or "y" to download the file.
 4)The Attached file will be downloaded in MetaMail Folder.  
   
+How  can I attach Multiple Files?:  
+MetaMail Currently supports only one file as an attachment per mail, However, you can combine all the files in a zip file. MetaMail Supports Zip File as an attachment as well.    
+    
 If you face any difficulty or want to report an issue or a bug:  
 1. Write Mail to "MetaMailSupport" on MetaMail. 
 2. Open issue on GitHub. 
