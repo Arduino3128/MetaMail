@@ -27,7 +27,6 @@ import platform
 import hashlib
 import re
 import subprocess
-getdir=os.getcwd()
 r1="None"
 osident=platform.system()
 if "Windows" in osident:
