@@ -62,3 +62,4 @@ Link to MetaMail Windows Version: [MetaMail Latest](https://github.com/Arduino31
      #Added File Attachment Option  
      #Fixed Variable Issue
      #Added New Inbuilt Updater
+     #Fixed "Updater" Issues
