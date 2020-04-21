@@ -562,8 +562,10 @@ def meta():
                 cmail()
             elif lo=="5":
                 frlist()
-            elif lo=="":mail()
-            else:em()
+            elif lo=="":
+                mail()
+            else:
+                mail()
             
         def error404():
             print("")
@@ -659,3 +661,4 @@ while d<20:
     #Added File Attachment Option
     #Fixed Variable Issue
     #Fixed Inbuilt Updater
+    #Fixed Invalid Choice Bug
