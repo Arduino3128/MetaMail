@@ -5,6 +5,9 @@ Off-Grid E-Mail Service with SHA-256 Password Encryptions.
    
 ## What's New? 
   
+### ~Release(3.2.3.7)  
+Fixed Major Bug  
+  
 ### ~Release(3.2.3.6)  
 Added New Inbuilt Updater   
 Fixed "Updater" Issue  
@@ -63,3 +66,4 @@ Link to MetaMail Windows Version: [MetaMail Latest](https://github.com/Arduino31
      #Fixed Variable Issue
      #Added New Inbuilt Updater
      #Fixed "Updater" Issues
+     #Fixed Invalid Choice Bug
