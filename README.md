@@ -7,7 +7,8 @@ Off-Grid E-Mail Service with SHA-256 Password Encryptions.
   
 ### ~Release(3.2.3.8)  
 Major Security Update!X!  
-Fixed Patches in Database Conf.    
+Fixed Patches in Database Conf.
+File Upload Size Increased to 25MB
   
 ### ~Release(3.2.3.7)  
 Fixed Major Bug  
