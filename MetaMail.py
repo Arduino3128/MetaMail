@@ -177,9 +177,9 @@ def meta():
             time.sleep(5)
             meta()
             clear()
-        c.execute('Select * from user where ID="%s"'%foruserl)
+        c.execute('Select AES_DECRYPT(ForgotQues,"%s") from user where ID="%s"'%(key,foruserl))
         for row in c.fetchall():
-              print("Question:",row[2])
+              print("Question:",row[0])
         forpass=getpass.getpass("Enter Answer: ")
         def encrypt_string(forpass):
             sha_signature2 = \
@@ -200,10 +200,6 @@ def meta():
                     nforpass3="'%s'"%sha_signature
                     if newpass==cnewpass:
                           c.execute('UPDATE user SET  Password="%s" where ID="%s"' %(nforpass3, foruserl))
-                          dbc.commit()
-                          tandd=datetime.today()
-                          tandd=tandd.strftime("%c")
-                          c.execute("insert into %s values('Password Changed','You have changed your Password. If you did not update your account password, please report the issue immediately to \"MetaMailSupport\"', 'MetamailSupport', '%s')"%(foruserlow, tandd))
                           dbc.commit()
                           print("You Have Sucessfullly Changed your Password!")
                           time.sleep(2)
@@ -274,6 +270,7 @@ def meta():
                 hashlib.sha256(npass.encode()).hexdigest()
             return sha_signature
         sha_signature = encrypt_string(npass)
+        sha_signature = "'%s'"%sha_signature
         cnpass=getpass.getpass("Re-enter the Password: ")
         if npass!=cnpass or npass=="":
             print("Password Didn't Match!")
@@ -295,19 +292,20 @@ def meta():
                 hashlib.sha256(forpass.encode()).hexdigest()
             return sha_signature2
         sha_signature2 = encrypt_string(forpass)
+        sha_signature2 = "'%s'"%sha_signature2
         
         def crmail():
             fuser='f%s'%nuserl
             try:
-                c.execute('insert into user values("%s","%s","%s","%s")', (nuserl, sha_signature, forques, sha_signature2))
-                c.execute('create table %s(Subject varchar(255), Mail LONGTEXT, SentBy varchar(255), date varchar(255), Attachment LONGBLOB, AttachFormat varchar(255))' %nuserl)
+                c.execute('insert into user values("%s","%s",AES_ENCRYPT("%s","%s"),"%s")'%(nuser3l, sha_signature, forques, key, sha_signature2))
+                c.execute('create table %s(Subject BLOB(255), Mail LONGBLOB, SentBy varchar(255), date varchar(255), Attachment LONGBLOB, AttachFormat varchar(255))' %nuserl)
                 c.execute('create table %s(Friend varchar(100))'%fuser)
             except:
                 print("Unknown Error! Maybe another user exists with same username!")
                 suser()
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
-            c.execute('insert into %s values("Welcome To MetaMail", "Welcome to MetaMail %s", "MetaMailSupport","%s","","")' %(nuserl,nuser,tandd))      
+            c.execute('insert into %s values(AES_ENCRYPT("Welcome To MetaMail","%s"), AES_ENCRYPT("Welcome to MetaMail %s","%s"), "MetaMailSupport","%s","","")' %(nuserl,key,nuser,key,tandd))
             dbc.commit()
             print("Account Created Sucessfully!")
             time.sleep(5)
@@ -381,8 +379,8 @@ def meta():
                     filename=input("Enter Filename: ")
                     file_stats = os.stat(filename)
                     file_stats=(file_stats.st_size/1024/1024)
-                    if file_stats>1.0:
-                        print("You cannot upload a file with size Greater Than 1 MB!")
+                    if file_stats>25.0:
+                        print("You cannot upload a file with size Greater Than 25 MB!")
                         time.sleep(4)
                         mail()
                     else:
@@ -393,7 +391,7 @@ def meta():
                     cmail()
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
-            sql_query="""insert into """+ccl+""" (Subject,Mail,SentBy,date,Attachment,AttachFormat) values(%s,%s,%s,%s,%s,%s)"""
+            sql_query="""insert into """+ccl+""" (Subject,Mail,SentBy,date,Attachment,AttachFormat) values(AES_ENCRYPT(%s,'"""+key+"""'),AES_ENCRYPT(%s,'"""+key+"""'),%s,%s,%s,%s)"""
             data_store=(sub,cont,xl,tandd,file,filename)
             result=c.execute(sql_query,data_store)
             dbc.commit()
@@ -477,7 +475,7 @@ def meta():
                 print("Inbox")
                 xl=str.lower(x)
                 dbc.reset_session()
-                c.execute("Select Subject,Mail,SentBy,date from %s " % xl)
+                c.execute("Select AES_DECRYPT(Subject,'%s'),AES_DECRYPT(Mail,'%s'),SentBy,date from %s" %(key,key, xl))
                 for row in c.fetchall():
                     controw=row[1]
                     if len(controw)>50:
@@ -504,19 +502,18 @@ def meta():
                         mail()
                     else:
                         retmailconf()
-                c.execute('select Subject,Mail,SentBy,Attachment,AttachFormat from %s where date="%s" and Subject="%s"'%(xl,rdate,rsubj))
+                c.execute('select AES_DECRYPT(Subject,"'+key+'"),AES_DECRYPT(Mail,"'+key+'"),SentBy,AttachFormat from %s where date="%s"'%(xl,rdate))
                 for dat in c.fetchall():
-                    subjectdat=dat[0]
+                    subjdat=dat[0]
                     maildata=dat[1]
                     sentbydata=dat[2]
-                    attachment=dat[3]
-                    filename=dat[4]
+                    filename=dat[3]
                 try:
-                    print("Subject: ",subjectdat)
+                    print("Subject: ",subjdat)
                     print("Content: ",maildata)
                     print("Sent by: ",sentbydata)
                 except:
-                    print("Mail not found with <%s> subject and <%s> date! Maybe there is an extra 'Space' in between!"%(rsubj,rdate))
+                    print("Mail not found with date <%s>!"%rdate)
                     time.sleep(5)
                     mail()
                 if filename!="None":
@@ -524,6 +521,11 @@ def meta():
                     conf=conf.lower()
                     if conf=="yes" or conf=="y":
                         try:
+                            print("Please Wait, Your Attachment is downloading!")
+                            print("This may take a while depending upon your internet speed and File Size!")
+                            c.execute('select Attachment from %s where date="%s"'%rdate)
+                            for dat2 in c.fetchall():
+                                attachment=dat2[0]
                             def convblob(attachment):
                                 with open(filename,"wb") as f:
                                     f.write(attachment)
@@ -550,7 +552,6 @@ def meta():
             elif lo=="6":
                 logout()
             elif lo=="2":
-                rsubj=input("Enter the Subject of the Mail: ")
                 rdate=input("Enter the Date and Time of the Mail: ")
                 if rdate=="":
                     print("Unknown date!")
@@ -575,17 +576,11 @@ def meta():
             meta()
         def delmail():
             xl=str.lower(x)
-            u="!@#$%^&*()'"
-            u=input("Enter the subject of Email you wish to delete: ")
-            u=u.replace("'", "\\'")
-            u=u.replace('"', '\\"')
             dat=input("Enter the date and time of the Email you wish to delete: ")
-            if u=="!@#$%^&*()'":mail()
-            else:pass
-            c.execute('delete from %s where Subject="%s" AND date="%s";' %(xl,u,dat))
+            c.execute('delete from %s where date="%s";' %(xl,dat))
             dbc.commit()
             print("")
-            print("Email with subject <%s> and date <%s> has been deleted sucessfully " %(u,dat))
+            print("Email with date <%s> has been deleted sucessfully " %dat)
             print("")
             time.sleep(1)
             mail()
@@ -622,7 +617,7 @@ def meta():
             else:
                 error404()
         dbc.commit()
-    choice=input("Enter 1 to Login, 2 to Create New Account, 3 to Change Password (Forgot Password) or 4 to Exit: ")
+    choice=input("Enter 1 to Login, 2 to Create New Account, 3 to Change Password (Forgot Password?) or 4 to Exit: ")
     if choice=="1":
         login()
     elif choice=="2":
@@ -636,7 +631,6 @@ def meta():
 d=10
 while d<20:
     meta()
-
 
 #Changelog:
     #Added Mail Delete functionality
