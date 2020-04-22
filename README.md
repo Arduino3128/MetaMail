@@ -6,7 +6,7 @@ Off-Grid E-Mail Service with SHA-256 Password Encryptions.
 ## What's New? 
   
 ### ~Release(3.2.3.8)  
-Major Security Update
+Major Security Update!X!  
 Fixed Patches in Database Conf.    
   
 ### ~Release(3.2.3.7)  
