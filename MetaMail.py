@@ -393,6 +393,8 @@ def meta():
                     cmail()
             tandd=datetime.today()
             tandd=tandd.strftime("%c")
+            print("Uploading your files, Please wait!")
+            print("This process may take a while depending upon your Internet Speed and File Size!")
             sql_query="""insert into """+ccl+""" (Subject,Mail,SentBy,date,Attachment,AttachFormat) values(AES_ENCRYPT(%s,'"""+key+"""'),AES_ENCRYPT(%s,'"""+key+"""'),%s,%s,%s,%s)"""
             data_store=(sub,cont,xl,tandd,file,filename)
             result=c.execute(sql_query,data_store)
@@ -524,8 +526,8 @@ def meta():
                     if conf=="yes" or conf=="y":
                         try:
                             print("Please Wait, Your Attachment is downloading!")
-                            print("This may take a while depending upon your internet speed and File Size!")
-                            c.execute('select Attachment from %s where date="%s"'%rdate)
+                            print("This may take a while depending upon your Internet Speed and File Size!")
+                            c.execute('select Attachment from %s where date="%s"'%(xl,rdate))
                             for dat2 in c.fetchall():
                                 attachment=dat2[0]
                             def convblob(attachment):
