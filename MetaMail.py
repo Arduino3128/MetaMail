@@ -1,6 +1,6 @@
-#Version 3.2.3.7
+#Version 3.2.3.8
 import random
-Ver=r"b'#Version 3.2.3.7\n'"
+Ver=r"b'#Version 3.2.3.8\n'"
 def logo():
     clear()
     colour=random.randint(31,37)
@@ -28,6 +28,8 @@ import hashlib
 import re
 import subprocess
 r1="None"
+notinst="Unknown OS, Try Installing 'mysql-connector-python & requests' manually!"
+key="mysql-connector-"
 osident=platform.system()
 if "Windows" in osident:
     clear=lambda:os.system("cls")
@@ -656,3 +658,5 @@ while d<20:
     #Fixed Variable Issue
     #Fixed Inbuilt Updater
     #Fixed Invalid Choice Bug
+    #Major Security Update!X!
+    #Fixed Patches in Database Conf.
