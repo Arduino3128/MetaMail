@@ -3,12 +3,15 @@ Off-Grid E-Mail Service with SHA-256 Password Encryptions.
    
 ![image](https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail%20Logo.png)
    
-## What's New? 
+## What's New?  
+  
+### ~Release(3.2.3.9)
+File Upload Size Increased to 25MB  
+Fixed Minor Bugs
   
 ### ~Release(3.2.3.8)  
 Major Security Update!X!  
 Fixed Patches in Database Conf.  
-File Upload Size Increased to 25MB  
     
 ### ~Release(3.2.3.7)  
 Fixed Major Bug  
