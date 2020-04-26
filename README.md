@@ -5,9 +5,13 @@ Off-Grid E-Mail Service with SHA-256 Password Encryptions.
    
 ## What's New?  
   
+### ~Release(3.2.4.0)
+#Added File Select/Save as GUI  
+#Fixed Typo    
+  
 ### ~Release(3.2.3.9)
-File Upload Size Increased to 25MB  
-Fixed Minor Bugs
+File Upload Size Increased to 25MB    
+Fixed Minor Bugs  
   
 ### ~Release(3.2.3.8)  
 Major Security Update!X!  
