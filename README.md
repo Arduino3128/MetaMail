@@ -49,7 +49,7 @@ Now MetaMail is Available for Windows. Run MetaMail without Python or its librar
 
 Link to MetaMail Windows Version: [MetaMail Latest](https://github.com/Arduino3128/MetaMail/releases/latest/)   
   
-## Issues with 3.2.3.5 to 3.2.3.8 release:  
+## Issues with 3.2.3.5 to 3.2.4.0 release:  
 1)No support for Text File(.txt).  
 
   
