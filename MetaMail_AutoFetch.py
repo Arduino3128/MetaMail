@@ -16,17 +16,17 @@ def logo():
     clear()
     colour=random.randint(31,37)
     print('''\033[1;%s;40m
-                 ███╗   ███╗███████╗████████╗ █████╗ ███╗   ███╗ █████╗ ██╗██╗         ██████╗    ██████╗    ██████╗ 
-                 ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗████╗ ████║██╔══██╗██║██║         ╚════██╗   ╚════██╗   ╚════██╗
-                 ██╔████╔██║█████╗     ██║   ███████║██╔████╔██║███████║██║██║          █████╔╝    █████╔╝    █████╔╝
-                 ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║╚██╔╝██║██╔══██║██║██║          ╚═══██╗   ██╔═══╝     ╚═══██╗
-                 ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║██║ ╚═╝ ██║██║  ██║██║███████╗    ██████╔╝██╗███████╗██╗██████╔╝
-                 ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝    ╚═════╝ ╚═╝╚══════╝╚═╝╚═════╝
-                                        [Script By: Kanad Nemade | Github: Arduino3128]
-        \n'''%colour)
+                            ███╗   ███╗███████╗████████╗ █████╗ ███╗   ███╗ █████╗ ██╗██╗         ██████╗    ██████╗ ██╗  ██╗
+                            ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗████╗ ████║██╔══██╗██║██║         ╚════██╗   ╚════██╗██║  ██║
+                            ██╔████╔██║█████╗     ██║   ███████║██╔████╔██║███████║██║██║          █████╔╝    █████╔╝███████║
+                            ██║╚██╔╝██║██╔══╝     ██║   ██╔══██║██║╚██╔╝██║██╔══██║██║██║          ╚═══██╗   ██╔═══╝ ╚════██║
+                            ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║██║ ╚═╝ ██║██║  ██║██║███████╗    ██████╔╝██╗███████╗██╗  ██║
+                            ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝╚══════╝    ╚═════╝ ╚═╝╚══════╝╚═╝  ╚═╝
+                                                    [Script By: Kanad Nemade | Github: Arduino3128]
+            \n'''%colour)
     print(" ")
     print(" ")
-    print("Welcome to MetaMail 3.2.3, Best Off-Grid, Light-Weight and Secure E-mail Service with SHA-256 Encryptions")
+    print("Welcome to MetaMail 3.2.4, Best Off-Grid, Light-Weight and Secure E-mail Service with SHA-256 Encryptions")
     print("")
     print("")
 try:
@@ -117,6 +117,16 @@ def GetAdv():
         time.sleep(2)
         exit()
     try:
+        geturl1="https://github.com/Arduino3128/MetaMail/raw/master/MetaMail.exe"
+        print("Downloading Windows version of MetaMail! This Process May Take a while!")
+        r=requests.get(geturl1, allow_redirects=True)
+        open("MetaMail.exe",'wb').write(r.content)
+        print("MetaMail.exe Downloaded Sucessfully.")
+    except:
+        print("Error! Failed To download MetaMail.exe...Exiting..")
+        time.sleep(2)
+        exit()    
+    try:
         geturl2="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail_Updater.py"
         r2=requests.get(geturl2, allow_redirects=True)
         open("MetaMail_Updater.py", "wb").write(r2.content)
@@ -152,14 +162,25 @@ def GetAdv():
         print("Exiting...")
         time.sleep(5)
         exit()
-def GetBas():
+def GetBas(cselect):
+       if cselect=="1" or cselect=="Windows":
+          geturl1="https://github.com/Arduino3128/MetaMail/raw/master/MetaMail.exe"
+          err="Error! Failed To download MetaMail.exe...Exiting.."
+          succ="MetaMail.exe Downloaded Sucessfully."
+          vername="MetaMail.exe"
+          print("Downloading Windows version of MetaMail! This Process May Take a while!")
+       else:
+          geturl1="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail.py"
+          err="Error! Failed To download MetaMail.py...Exiting.."
+          succ="MetaMail.py Downloaded Sucessfully."
+          vername="MetaMail.py"
        try:
-              geturl1="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail.py"
               r=requests.get(geturl1, allow_redirects=True)
-              open("MetaMail.py",'wb').write(r.content)
-              print("MetaMail.py Downloaded Sucessfully.")
+              open(vername,'wb').write(r.content)
+              print(succ)
+              time.sleep(2)
        except:
-              print("Error! Failed To download MetaMail.py...Exiting..")
+              print(err)
               time.sleep(2)
               exit()
        try:
@@ -167,6 +188,7 @@ def GetBas():
               r4=requests.get(geturl4, allow_redirects=True)
               open("ReadMe.txt",'wb').write(r4.content)
               print("ReadMe.txt Downloaded Sucessfully.")
+              time.sleep(2)
               rt="1"
        except:
               print("Error! Failed To download ReadMe.txt...Exiting..")
@@ -178,18 +200,25 @@ def GetBas():
               print("Something Went Wrong....")
               print("Delete any file Downloaded and Try Again....")
               print("Exiting...")
-              time.sleep(5)
+              time.sleep(2)
               exit()
 def ModSel():
        mode=input("Enter 1 for Basic Download or 2 for Advance Download(Default:1): ")
        if mode=="2":
-              GetAdv()
+           GetAdv()
        else:
-              GetBas()      
+           osget=input("Enter 1 for Windows Version and 2 for Cross Platform Compatible Python Version(Default:OS Identification): ")
+           if osget=="1":
+                   GetBas("1")
+           elif osget=='2':
+                    GetBas("2")
+           else:
+               GetBas(osident)
+                
 if Agreement=="Yes" or Agreement=="yes" or Agreement=="y" or Agreement=="Y":
        ModSel()
 else:
     print("Agreement Denied!")
     print("Exiting...")
-    time.sleep(5)
+    time.sleep(3)
     exit()
