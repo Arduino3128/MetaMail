@@ -1,10 +1,10 @@
-#Version 3.2.4.0
+#Version 3.2.4.1
 try:
     from tkinter import Tk
     from tkinter.filedialog import askopenfilename
     from tkinter.filedialog import askdirectory
     import random
-    Ver=r"b'#Version 3.2.4.0\n'"
+    Ver=r"b'#Version 3.2.4.1\n'"
     def logo():
         clear()
         colour=random.randint(31,37)
@@ -45,19 +45,20 @@ try:
         print("Unknown O.S. Using Default 'Windows Configuration'")
     import getpass
     try:
+       from prompt_toolkit import prompt
        import mysql.connector
        import requests
     except:
-       print("'MySQL Connector or Requests' not found! Starting 'Requests and MySQL Connector' Module installing Procedure!")
+       print("'MySQL Connector or Requests or prompt_toolkit' not found! Starting Module install Procedure!")
        if osident=="Windows":
            piploc=input("Enter the directory path of Python: ")
-           subprocess.call("cd %s/Scripts && pip install mysql-connector-python requests"%piploc, shell=True)
+           subprocess.call("cd %s/Scripts && pip install mysql-connector-python requests prompt_toolkit"%piploc, shell=True)
            subprocess.call("MetaMail.py", shell=True)
        elif osident=="Linux" or osident=="Darwin":
-           subprocess.call("pip3 install requests mysql-connector-python", shell=True)
+           subprocess.call("pip3 install requests mysql-connector-python prompt_toolkit", shell=True)
            subprocess.call("python3 MetaMail.py", shell=True)
        else:
-           print("Unknown OS, Try Installing 'mysql-connector-python & requests' manually!")
+           print("Unknown OS, Try Installing 'mysql-connector-python, requests & prompt_toolkit' manually!")
        exit()
        time.sleep(5)
     #####################
@@ -70,7 +71,7 @@ try:
         s1=str(s1.content)
         checkup2="Sucess"
     except:
-       print("An Error occured while checking for Server Uplink...Check your Internet Connection!")
+       print("An Error occured while checking for Server status...Check your Internet Connection!")
        checkup2="Error"
     s2=s1.replace("b'",'')
     s2=s2.replace("'","")
@@ -203,8 +204,8 @@ try:
             c.execute('select * from user where ID="%s"'%foruserl)
             for row in c.fetchall():
                   if nforpass==row[3]:
-                        newpass=getpass.getpass("Enter New Password: ")
-                        cnewpass=getpass.getpass("Re-enter the New Pasword: ")
+                        newpass= prompt("Enter New Password: ", is_password=True)
+                        cnewpass= prompt("Re-enter the New Password: ", is_password=True)
                         def encrypt_string(newpass):
                             sha_signature = \
                                 hashlib.sha256(newpass.encode()).hexdigest()
@@ -275,7 +276,7 @@ try:
             for i in c.fetchall():
                  if nuser3l in i:
                    suser()
-            npass=getpass.getpass("Enter your Password: ")
+            npass=prompt("Enter your Password: ", is_password=True)
             if npass=="":
                 print("This Field can't be left empty!")
                 time.sleep(2)
@@ -286,7 +287,7 @@ try:
                 return sha_signature
             sha_signature = encrypt_string(npass)
             sha_signature = "'%s'"%sha_signature
-            cnpass=getpass.getpass("Re-enter the Password: ")
+            cnpass=prompt("Re-enter the Password: ", is_password=True)
             if npass!=cnpass or npass=="":
                 print("Password Didn't Match!")
                 cacc()  
@@ -640,7 +641,7 @@ try:
             x=x.replace('"', '\\"')
             xnew="'%s'" %x
             xnewl=str.lower(xnew)
-            z=getpass.getpass("Enter your Password: ")
+            z = prompt("Enter your Password: ", is_password=True)
             def encrypt_string(z):
                 sha_signature = \
                     hashlib.sha256(z.encode()).hexdigest()
@@ -707,3 +708,4 @@ except KeyboardInterrupt:
     #Fixed Minor Bugs
     #Added File Select/Save as GUI
     #Fixed Typo
+    #Added password "*".
