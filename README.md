@@ -5,12 +5,15 @@ Off-Grid E-Mail Service with SHA-256 Password Encryptions.
    
 ## What's New?  
   
+### ~Release(3.2.4.1)
+Added Password "*" 
+  
 ### ~Release(3.2.4.0)
 Added File Select/Save as GUI  
 Fixed Typo    
   
 ### ~Release(3.2.3.9)
-File Upload Size Increased to 25MB    
+File Upload Size Increased to 5MB    
 Fixed Minor Bugs  
   
 ### ~Release(3.2.3.8)  
@@ -81,3 +84,5 @@ Link to MetaMail Windows Version: [MetaMail Latest](https://github.com/Arduino31
      #Fixed Invalid Choice Bug
      #Major Security Update!X!
      #Fixed Patches in Database Conf.
+     #Fixed Typo
+     #Added Password "*"
