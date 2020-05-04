@@ -6,8 +6,8 @@ Off-Grid E-Mail Service with SHA-256 Password Encryptions.
 ## What's New?  
   
 ### ~Release(3.2.4.1)
-Added txt file suport
-Added Password "*".
+Added txt file suport  
+Added Password "*"  
   
 ### ~Release(3.2.4.0)
 Added File Select/Save as GUI  
@@ -83,4 +83,4 @@ Link to MetaMail Windows Version: [MetaMail Latest](https://github.com/Arduino31
      #Fixed Patches in Database Conf.
      #Fixed Typo
      #Added Password "*"
-     #Fixed txt upload Bug
+     #Fixed txt file upload Bug
