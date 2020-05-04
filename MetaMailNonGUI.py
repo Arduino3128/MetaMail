@@ -50,10 +50,10 @@ try:
        if osident=="Windows":
            piploc=input("Enter the directory path of Python: ")
            subprocess.call("cd %s/Scripts && pip install mysql-connector-python requests prompt_toolkit"%piploc, shell=True)
-           subprocess.call("MetaMail.py", shell=True)
+           subprocess.call("MetaMailNonGUI.py", shell=True)
        elif osident=="Linux" or osident=="Darwin":
            subprocess.call("pip3 install requests mysql-connector-python prompt_toolkit", shell=True)
-           subprocess.call("python3 MetaMail.py", shell=True)
+           subprocess.call("python3 MetaMailNonGUI.py", shell=True)
        else:
            print("Unknown OS, Try Installing 'mysql-connector-python, requests & prompt_toolkit' manually!")
        exit()
