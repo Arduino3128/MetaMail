@@ -1,10 +1,10 @@
-#Version 3.2.4.1
+#Version 3.2.4.1a
 try:
     from tkinter import Tk
     from tkinter.filedialog import askopenfilename
     from tkinter.filedialog import askdirectory
     import random
-    Ver=r"b'#Version 3.2.4.1\n'"
+    Ver=r"b'#Version 3.2.4.1a\n'"
     def logo():
         clear()
         colour=random.randint(31,37)
@@ -188,13 +188,13 @@ try:
                    break
             else:
                 print("Username not Found!")
-                time.sleep(5)
+                time.sleep(2)
                 meta()
                 clear()
             c.execute('Select AES_DECRYPT(ForgotQues,"%s") from user where ID="%s"'%(key,foruserl))
             for row in c.fetchall():
                   print("Question:",row[0])
-            forpass=getpass.getpass("Enter Answer: ")
+            forpass=prompt("Enter answer: ", is_password=True)
             def encrypt_string(forpass):
                 sha_signature2 = \
                     hashlib.sha256(forpass.encode()).hexdigest()
@@ -298,7 +298,7 @@ try:
                 meta()
             forques=forques.replace("'", "\\'")
             forques=forques.replace('"', '\\"')
-            forpass=getpass.getpass("Enter the answer: ")
+            forpass=prompt("Enter the Answer: ", is_password=True)
             if forpass=="":
                 print("This Field can't be left empty!")
                 time.sleep(2)
@@ -389,7 +389,7 @@ try:
                 filename="None"
                 try:
                     def fileconv(FN):
-                        with open(FN, 'rb') as f:
+                        with open(FN,'r') as f:
                             fileblob = f.read()
                         return fileblob
                         print("File Uploaded Sucessfully!")
@@ -398,12 +398,12 @@ try:
                         FN = askopenfilename()
                         FNS=FN.split("/")
                         filename=FNS[-1]
-                        print("File Selected:", filename)
                         file_stats = os.stat(FN)
                         file_stats=(file_stats.st_size/1024/1024)
+                        print("File Selected:", filename)
                         print("File Size:",file_stats,"MB")
-                        if file_stats>25.0:
-                            print("You cannot upload a file with size Greater than 25 MB!")
+                        if file_stats>5.0:
+                            print("You cannot upload a file with size Greater than 5 MB!")
                             time.sleep(4)
                             mail()
                         else:
@@ -415,9 +415,29 @@ try:
                                 time.sleep(2)
                                 cmail()
                 except:
-                        print("Probably File doesn't Exist!")
-                        time.sleep(2)
-                        cmail()
+                        try:
+                            def fileconv(FN):
+                                with open(FN,'rb') as f:
+                                    fileblob = f.read()
+                                return fileblob
+                                print("File Uploaded Sucessfully!")
+                            if attachmnt=="yes" or attachmnt=="y":
+                                if file_stats>5.0:
+                                    print("You cannot upload a file with size Greater than 5 MB!")
+                                    time.sleep(4)
+                                    mail()
+                                else:
+                                    file=fileconv(FN)
+                                    confirmation=input("Send Mail? Y/Yes: ")
+                                    confirmation=confirmation.lower()
+                                    if confirmation!="yes" and confirmation!="y":
+                                        print("Mail NOT Sent!")
+                                        time.sleep(2)
+                                        cmail()
+                        except:
+                            print("Probably File doesn't Exist! or Unsupported File fromat")
+                            time.sleep(2)
+                            cmail()
                 tandd=datetime.today()
                 tandd=tandd.strftime("%c")
                 print("Uploading your files, Please wait!")
@@ -565,10 +585,14 @@ try:
                                 c.execute('select Attachment from %s where date="%s"'%(xl,rdate))
                                 for dat2 in c.fetchall():
                                     attachment=dat2[0]
-                                def convblob(attachment):
-                                    with open(filename,"wb") as f:
+                                def convblob(attachment,ftype2):
+                                    with open(filename,ftype2) as f:
                                         f.write(attachment)
-                                convblob(attachment)
+                                if isinstance(attachment,str):
+                                    ftype="w"
+                                else:
+                                    ftype="wb"
+                                convblob(attachment,ftype)
                                 print("Attachment Downloaded Sucessfully in the MetaMail folder")
                                 time.sleep(1)
                                 downloaded=1
@@ -709,3 +733,4 @@ except KeyboardInterrupt:
     #Added File Select/Save as GUI
     #Fixed Typo
     #Added password "*".
+    #Fixed txt file upload Bug
