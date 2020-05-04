@@ -1,7 +1,7 @@
-#Version 3.2.4.1
+#Version 3.2.4.1a
 try:
     import random
-    Ver=r"b'#Version 3.2.4.1\n'"
+    Ver=r"b'#Version 3.2.4.1a\n'"
     def logo():
         clear()
         colour=random.randint(31,37)
@@ -385,23 +385,25 @@ try:
                 file=""
                 filename="None"
                 try:
-                    def fileconv(filename):
-                        with open(filename,'rb') as f:
+                    def fileconv(FN):
+                        with open(FN,'r') as f:
                             fileblob = f.read()
                         return fileblob
                         print("File Uploaded Sucessfully!")
                     if attachmnt=="yes" or attachmnt=="y":
-                    	filename=input("Enter Filename: ")
-                    	print("File Selected:", filename)
-                    	file_stats = os.stat(filename)
-                    	file_stats=(file_stats.st_size/1024/1024)
-                    	print("File Size:",file_stats,"MB")
-                    	if file_stats>25.0:
-                            print("You cannot upload a file with size Greater than 25 MB!")
+                        FN = input("Enter Filename:")
+                        FNS=FN.split("/")
+                        filename=FNS[-1]
+                        file_stats = os.stat(FN)
+                        file_stats=(file_stats.st_size/1024/1024)
+                        print("File Selected:", filename)
+                        print("File Size:",file_stats,"MB")
+                        if file_stats>5.0:
+                            print("You cannot upload a file with size Greater than 5 MB!")
                             time.sleep(4)
                             mail()
-                    	else:
-                            file=fileconv(filename)
+                        else:
+                            file=fileconv(FN)
                             confirmation=input("Send Mail? Y/Yes: ")
                             confirmation=confirmation.lower()
                             if confirmation!="yes" and confirmation!="y":
@@ -409,9 +411,29 @@ try:
                                 time.sleep(2)
                                 cmail()
                 except:
-                        print("Probably File doesn't Exist!")
-                        time.sleep(2)
-                        cmail()
+                        try:
+                            def fileconv(FN):
+                                with open(FN,'rb') as f:
+                                    fileblob = f.read()
+                                return fileblob
+                                print("File Uploaded Sucessfully!")
+                            if attachmnt=="yes" or attachmnt=="y":
+                                if file_stats>5.0:
+                                    print("You cannot upload a file with size Greater than 5 MB!")
+                                    time.sleep(4)
+                                    mail()
+                                else:
+                                    file=fileconv(FN)
+                                    confirmation=input("Send Mail? Y/Yes: ")
+                                    confirmation=confirmation.lower()
+                                    if confirmation!="yes" and confirmation!="y":
+                                        print("Mail NOT Sent!")
+                                        time.sleep(2)
+                                        cmail()
+                        except:
+                            print("Probably File doesn't Exist! or Unsupported File fromat")
+                            time.sleep(2)
+                            cmail()
                 tandd=datetime.today()
                 tandd=tandd.strftime("%c")
                 print("Uploading your files, Please wait!")
@@ -556,10 +578,14 @@ try:
                                 c.execute('select Attachment from %s where date="%s"'%(xl,rdate))
                                 for dat2 in c.fetchall():
                                     attachment=dat2[0]
-                                def convblob(attachment):
-                                    with open(filename,"wb") as f:
+                                def convblob(attachment,ftype2):
+                                    with open(filename,ftype2) as f:
                                         f.write(attachment)
-                                convblob(attachment)
+                                if isinstance(attachment,str):
+                                    ftype="w"
+                                else:
+                                    ftype="wb"
+                                convblob(attachment,ftype)
                                 print("Attachment Downloaded Sucessfully in the MetaMail folder")
                                 time.sleep(1)
                                 downloaded=1
