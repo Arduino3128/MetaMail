@@ -15,13 +15,12 @@ To Update MetaMail:
 1. Simply Run MetaMail file!  
 
   
-How to add an Attachment?:  
-***Currently MetaMail 3.2.3.5+ supports Attachment of any file of size less than 25 MB and file except Text Files (.txt).***  
+How to add an Attachment?:   
   
 1)Go to "Compose" and follow regular procedure.  
 2)At the end an option will prompt asking whether you want to add an Attachment or not.  
 3)Enter "Yes" or "y" to add attachment.  
-4)Enter Filename[Copy the file to the MetaMail Folder beforehand!].
+4)Enter Filename[For NonGUI Copy the file to the MetaMail Folder beforehand!].
 5)By pressing Enter you will send the Mail.
   
 How do I Download attached file?:
