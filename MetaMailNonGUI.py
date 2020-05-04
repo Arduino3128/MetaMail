@@ -103,15 +103,15 @@ try:
                try:
                    geturl1="https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMailNonGUI.py"
                    r=requests.get(geturl1, allow_redirects=True)
-                   open("MetaMail.py",'wb').write(r.content)
-                   print("MetaMail.py Downloaded Sucessfully.")
+                   open("MetaMailNonGUI.py",'wb').write(r.content)
+                   print("MetaMailNonGUI.py Downloaded Sucessfully.")
                    print("Updating....")
-                   print("MetaMail Updated Sucessfully!")
+                   print("MetaMailNonGUI Updated Sucessfully!")
                    time.sleep(2)
                    if osident=="Darwin" or osident=="Linux":
-                       subprocess.call("python3 MetaMail.py", shell=True)
+                       subprocess.call("python3 MetaMailNonGUI.py", shell=True)
                    else:
-                       subprocess.call("MetaMail.py", shell=True)
+                       subprocess.call("MetaMailNonGUI.py", shell=True)
                    exit(None)
                except:
                    print("Failed To Update! You are using Older Version!")
