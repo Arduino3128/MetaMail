@@ -1,5 +1,5 @@
 Thank You for choosing MetaMail!
-Please follow the Steps to avoid any errors:
+Please follow the Steps to avoid any errors(For cross platform Python MetaMail only):
 1. Download and Install "Python 3.x.x" on your Computer.
 	 Download Link: https://www.python.org/downloads/
 
