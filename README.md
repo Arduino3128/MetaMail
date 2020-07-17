@@ -1,7 +1,7 @@
 # MetaMail(***Deprecated***)  
 Off-Grid E-Mail Service with SHA-256 Password Encryptions.
   
-Link to MetaMailGUI: [MetaMail Latest](https://github.com/Arduino3128/MetaMailGUI/releases/latest/)   
+Link to MetaMailGUI: [MetaMailGUI Latest](https://github.com/Arduino3128/MetaMailGUI/releases)   
 
 ![image](https://raw.githubusercontent.com/Arduino3128/MetaMail/master/MetaMail%20Logo.png)
    
